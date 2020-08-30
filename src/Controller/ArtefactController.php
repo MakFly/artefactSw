@@ -50,7 +50,7 @@ class ArtefactController extends AbstractController
     /**
     * @Route("/ajax", name="ajax_monsters_action")
     */
-    public function ajaxAction(Request $request, SubstatsArtefactByMonstersRepository $substatsArtefactByMonstersRepository)
+    public function ajaxAction(Request $request, TranslatorInterface $translatorInterface, SubstatsArtefactByMonstersRepository $substatsArtefactByMonstersRepository)
     {
         /* on récupère la valeur envoyée */
         $idMonsters = $request->request->get('idMonsters');
@@ -59,7 +59,7 @@ class ArtefactController extends AbstractController
         $resultArtefactByMonsters = $substatsArtefactByMonstersRepository->findEntitiesByIdMonsters($idMonsters);
         
         $managerArtefacts = new ManagerArtefacts();
-        $monsters = new MontersByArtefactsSubsServices($managerArtefacts);
+        $monsters = new MontersByArtefactsSubsServices($managerArtefacts, $translatorInterface);
         $arraySubsStatsByMonster = $monsters->showArtefactsByMonsters($resultArtefactByMonsters);
 
         $dataArtefactByMonsters = [];

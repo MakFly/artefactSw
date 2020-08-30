@@ -8,3 +8,59 @@ name: Name
 stars: Stars
 family: Family
 preferedFlatStat: Prefered Flat Stat
+
+#SubStats
+#critDmg
+Skill 1 CRIT DMG +%: Skill 1 CRIT DMG +%
+Skill 2 CRIT DMG +%: Skill 2 CRIT DMG +%
+Skill 3 CRIT DMG +%: Skill 3 CRIT DMG +%
+Skill 4 CRIT DMG +%: Skill 4 CRIT DMG +%
+
+#recovery
+Skill 1 Recovery +%: Skill 1 Recovery +%
+Skill 2 Recovery +%: Skill 2 Recovery +%
+Skill 3 Recovery +%: Skill 3 Recovery +%
+
+#accuracy
+Skill 1 Accuracy +%: Skill 1 Accuracy +%
+Skill 2 Accuracy +%: Skill 2 Accuracy +%
+Skill 3 Accuracy +%: Skill 3 Accuracy +%
+
+Damage Dealt on Fire +%: Damage Dealt on Fire +%
+Damage Dealt on Water +%: Damage Dealt on Water +%
+Damage Dealt on Wind +%: Damage Dealt on Wind +%
+Damage Dealt on Light +%: Damage Dealt on Light +%
+Damage Dealt on Dark +%: Damage Dealt on Dark +%
+
+Damage Received from Fire -%: Damage Received from Fire -%
+Damage Received from Water -%: Damage Received from Water -%
+Damage Received from Wind -%: Damage Received from Wind -%
+Damage Received from Light -%: Damage Received from Light -%
+Damage Received from Dark -%: Damage Received from Dark -%
+
+ATK+ Proportional to Lost HP up to %: ATK+ Proportional to Lost HP up to %
+DEF+ Proportional to Lost HP up to %: DEF+ Proportional to Lost HP up to %
+SPD+ Proportional to Lost HP up to %: SPD+ Proportional to Lost HP up to %
+
+ATK Increasing Effect +%: ATK Increasing Effect +%
+DEF Increasing Effect +%: DEF Increasing Effect +%
+SPD Increasing Effect +%: SPD Increasing Effect +%
+
+CRIT Rate Increasing Effect +%: CRIT Rate Increasing Effect +%
+Damage Dealt by Counterattack +%: Damage Dealt by Counterattack +%
+Damage Dealt by Attacking Together +%: Damage Dealt by Attacking Together +%
+Bomb Damage +%: Bomb Damage +%
+Life Drain +%: Life Drain +%
+HP when Revived +%: HP when Revived +%
+Attack Bar when Revived +%: Attack Bar when Revived +%
+Damage Dealt by Reflect DMG +%: Damage Dealt by Reflect DMG +%
+
+Additional Damage by % of HP: Additional Damage by % of HP
+Additional Damage by % of ATK: Additional Damage by % of ATK
+Additional Damage by % of DEF: Additional Damage by % of DEF
+Additional Damage by % of SPD: Additional Damage by % of SPD
+
+Damage Received Under Inability Effects -%: Damage Received Under Inability Effects -%
+SPD Under Inability Effects +%: SPD Under Inability Effects +%
+CRIT DMG Received -%: CRIT DMG Received -%
+Crushing Hit DMG +%: Crushing Hit DMG +%
