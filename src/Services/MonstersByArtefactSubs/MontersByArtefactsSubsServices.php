@@ -4,17 +4,27 @@ namespace App\Services;
 
 use App\Manager\ManagerArtefacts;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @author inopan
  */
 class MontersByArtefactsSubsServices
 {
+    /** 
+     * @var ManagerArtefacts $managerArtefacts 
+     */
     private $managerArtefacts;
+    
+    /** 
+     * @var TranslatorInterface $translatorInterface 
+     */
+    private $translatorInterface;
 
-    public function __construct(ManagerArtefacts $managerArtefacts)
+    public function __construct(ManagerArtefacts $managerArtefacts, TranslatorInterface $translatorInterface)
     {
         $this->managerArtefacts = $managerArtefacts;
+        $this->translatorInterface = $translatorInterface;
     }
 
     /**
@@ -92,6 +102,6 @@ class MontersByArtefactsSubsServices
      */
     public function showArtefactsByMonsters($artefactByMonsters)
     {
-        return $this->managerArtefacts->checkArtefactsByMonsters($artefactByMonsters);
+        return $this->managerArtefacts->checkArtefactsByMonsters($artefactByMonsters, $this->translatorInterface);
     }
 }

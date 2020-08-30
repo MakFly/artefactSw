@@ -2,31 +2,33 @@
 
 namespace App\Manager;
 
+use Symfony\Component\Translation\Translator;
+
 /**
  * @Author Inopan
  */
 class ManagerArtefacts
 {
     /** @var string */
-    private $skill1CritDmgMorePourcent = "[Skill 1] CRIT DMG +%";
+    private $skill1CritDmgMorePourcent = "Skill 1 CRIT DMG +%";
     /** @var string */
-    private $skill2CritDmgMorePourcent = "[Skill 2] CRIT DMG +%";
+    private $skill2CritDmgMorePourcent = "Skill 2 CRIT DMG +%";
     /** @var string */
-    private $skill3CritDmgMorePourcent = "[Skill 3] CRIT DMG +%";
+    private $skill3CritDmgMorePourcent = "Skill 3 CRIT DMG +%";
     /** @var string */
-    private $skill4CritDmgMorePourcent = "[Skill 4] CRIT DMG +%";
+    private $skill4CritDmgMorePourcent = "Skill 4 CRIT DMG +%";
     /** @var string */
-    private $skill1RecoveryMorePourcent = "[Skill 1] Recovery +%";
+    private $skill1RecoveryMorePourcent = "Skill 1 Recovery +%";
     /** @var string */
-    private $skill2RecoveryMorePourcent = "[Skill 2] Recovery +%";
+    private $skill2RecoveryMorePourcent = "Skill 2 Recovery +%";
     /** @var string */
-    private $skill3RecoveryMorePourcent = "[Skill 3] Recovery +%";
+    private $skill3RecoveryMorePourcent = "Skill 3 Recovery +%";
     /** @var string */
-    private $skill1AccuracyMorePourcent = "[Skill 1] Accuracy +%";
+    private $skill1AccuracyMorePourcent = "Skill 1 Accuracy +%";
     /** @var string */
-    private $skill2AccuracyMorePourcent = "[Skill 2] Accuracy +%";
+    private $skill2AccuracyMorePourcent = "Skill 2 Accuracy +%";
     /** @var string */
-    private $skill3AccuracyMorePourcent = "[Skill 3] Accuracy +%";
+    private $skill3AccuracyMorePourcent = "Skill 3 Accuracy +%";
     /** @var string */
     private $DamageDealtOnFireMorePourcent = "Damage Dealt on Fire +%";
     /** @var string */
@@ -97,53 +99,53 @@ class ManagerArtefacts
      *  37 à rajouter en plus de ce déjà mis dans le tableau
      * @var $subStats
      */
-    public function checkArtefactsByMonsters($subStats)
+    public function checkArtefactsByMonsters($subStats, $translatorInterface)
     {
         $subStatsArray = [];
         foreach($subStats as $values){
             $subStatsArray = [
-                "skill1Dmg" => $this->getSubsStatsSkill1critdmgmorepourcent($values),
-                "skill2Dmg" => $this->getSubsStatsSkill2critdmgmorepourcent($values),
-                "skill3Dmg" => $this->getSubsStatsSkill3critdmgmorepourcent($values),
-                "skill4Dmg" => $this->getSubsStatsSkill4critdmgmorepourcent($values),
-                "skill1Recovery" => $this->getSubsStatsSkill1RecoveryMorePourcent($values),
-                "skill2Recovery" => $this->getSubsStatsSkill2RecoveryMorePourcent($values),
-                "skill3Recovery" => $this->getSubsStatsSkill3RecoveryMorePourcent($values),
-                "skill1Accuracy" => $this->getSubsStatsSkill1accuracymorepourcent($values),
-                "skill2Accuracy" => $this->getSubsStatsSkill2accuracymorepourcent($values),
-                "skill3Accuracy" => $this->getSubsStatsSkill3accuracymorepourcent($values),
-                "damageDealFire" => $this->getSubsStatsDamagedealtonfiremorepourcent($values),
-                "damageDealWater" => $this->getSubsStatsDamagedealtonwatermorepourcent($values),
-                "damageDealWind" => $this->getSubsStatsDamagedealtonwindmorepourcent($values),
-                "damageDealLight" => $this->getSubsStatsDamagedealtonlightmorepourcent($values),
-                "damageDealDark" => $this->getSubsStatsDamagedealtondarkmorepourcent($values),
-                "damageReceivedFire" => $this->getSubsStatsDamagereceivedfromfirelesspourcent($values),
-                "damageReceivedWater" => $this->getSubsStatsDamagereceivedfromwaterlesspourcent($values),
-                "damageReceivedWind" => $this->getSubsStatsDamagereceivedfromwindlesspourcent($values),
-                "damageReceivedLight" => $this->getSubsStatsDamagereceivedfromlightlesspourcent($values),
-                "damageReceivedDark" => $this->getSubsStatsDamagereceivedfromdarklesspourcent($values),
-                "atkMoreProportionalToLost" => $this->getSubsStatsAtkmoreproportionaltolosthpuptopourcent($values),
-                "defMoreProportionalToLost" => $this->getSubsStatsDefmoreproportionaltolosthpuptopourcent($values),
-                "spdMoreProportionalToLost" => $this->getSubsStatsSpdmoreproportionaltolosthpuptopourcent($values),
-                "atkIncreasingEffect" => $this->getSubsStatsAtkincreasingeffectmorepourcent($values),
-                "defIncreasingEffect" => $this->getSubsStatsDefincreasingeffectmorepourcent($values),
-                "spdIncreasingEffect" => $this->getSubsStatsSpdincreasingeffectmorepourcent($values),
-                "critRateIncreasingEffect" => $this->getSubsStatsCritrateincreasingeffectmorepourcent($values),
-                "damageDealByCounterAtk" => $this->getSubsStatsDamagedealtbycounterattackmorepourcent($values),
-                "damageDealByAttackingTogether" => $this->getSubsStatsDamagedealtbyattackingtogethermorepourcent($values),
-                "bombDamage" => $this->getSubsStatsBombdamagemorepourcent($values),
-                "lifeDrain" => $this->getSubsStatsLifedrainmorepourcent($values),
-                "hpWhenRevive" => $this->getSubsStatsHpwhenrevivedmorepourcent($values),
-                "atkBarWhenRevive" => $this->getSubsStatsAttackbarwhenrevivedmorepourcent($values),
-                "damageDealByReflectDmg" => $this->getSubsStatsDamagedealtbyreflectdmgmorepourcent($values),
-                "additionalDamageByHp" => $this->getSubsStatsAdditionaldamagebypourcentofhp($values),
-                "additionalDamageByAtk" => $this->getSubsStatsAdditionaldamagebypourcentofatk($values),
-                "additionalDamageByDef" => $this->getSubsStatsAdditionaldamagebypourcentofdef($values),
-                "additionalDamageBySpd" => $this->getSubsStatsAdditionaldamagebypourcentofspd($values),
-                "damageReceivedUnderInabilityEffect" => $this->getSubsStatsDamagereceivedunderinabilityeffectslesspourcent($values),
-                "spdUnderInabilityEffect" => $this->getSubsStatsSpdunderinabilityeffectsmorepourcent($values),
-                "critDmgReceived" => $this->getSubsStatsCritdmgreceivedlesspourcent($values),
-                "crushIngHitDmg" => $this->getSubsStatsCrushinghitdmgmorepourcent($values),
+                "skill1Dmg" => $this->getTranslateSubStats($values->getSkill1critdmgmorepourcent(), $this->skill1CritDmgMorePourcent, $translatorInterface),
+                "skill2Dmg" => $this->getTranslateSubStats($values->getSkill2critdmgmorepourcent(), $this->skill2CritDmgMorePourcent, $translatorInterface),
+                "skill3Dmg" => $this->getTranslateSubStats($values->getSkill3critdmgmorepourcent(), $this->skill3CritDmgMorePourcent, $translatorInterface),
+                "skill4Dmg" => $this->getTranslateSubStats($values->getSkill4critdmgmorepourcent(), $this->skill4CritDmgMorePourcent, $translatorInterface),
+                "skill1Recovery" => $this->getTranslateSubStats($values->getSkill1recoverymorepourcent(), $this->skill1RecoveryMorePourcent, $translatorInterface),
+                "skill2Recovery" => $this->getTranslateSubStats($values->getSkill2recoverymorepourcent(), $this->skill2RecoveryMorePourcent, $translatorInterface),
+                "skill3Recovery" => $this->getTranslateSubStats($values->getSkill3recoverymorepourcent(), $this->skill3RecoveryMorePourcent, $translatorInterface),
+                "skill1Accuracy" => $this->getTranslateSubStats($values->getSkill1accuracymorepourcent(), $this->skill1AccuracyMorePourcent, $translatorInterface),
+                "skill2Accuracy" => $this->getTranslateSubStats($values->getSkill2accuracymorepourcent(), $this->skill2AccuracyMorePourcent, $translatorInterface),
+                "skill3Accuracy" => $this->getTranslateSubStats($values->getSkill3accuracymorepourcent(), $this->skill3AccuracyMorePourcent, $translatorInterface),
+                "damageDealFire" => $this->getTranslateSubStats($values->getDamagedealtonfiremorepourcent(), $this->DamageDealtOnFireMorePourcent, $translatorInterface),
+                "damageDealWater" => $this->getTranslateSubStats($values->getDamagedealtonwatermorepourcent(), $this->DamageDealtOnWaterMorePourcent, $translatorInterface),
+                "damageDealWind" => $this->getTranslateSubStats($values->getDamagedealtonwindmorepourcent(), $this->DamageDealtOnWindMorePourcent, $translatorInterface),
+                "damageDealLight" => $this->getTranslateSubStats($values->getDamagedealtonlightmorepourcent(), $this->DamageDealtOnLightMorePourcent, $translatorInterface),
+                "damageDealDark" => $this->getTranslateSubStats($values->getDamagedealtondarkmorepourcent(), $this->DamageDealtOnDarkMorePourcent, $translatorInterface),
+                "damageReceivedFire" => $this->getTranslateSubStats($values->getDamagereceivedfromfirelesspourcent(), $this->DamageReceivedFromFireLessPourcent, $translatorInterface),
+                "damageReceivedWater" => $this->getTranslateSubStats($values->getDamagereceivedfromwaterlesspourcent(), $this->DamageReceivedFromWaterLessPourcent, $translatorInterface),
+                "damageReceivedWind" => $this->getTranslateSubStats($values->getDamagereceivedfromwindlesspourcent(), $this->DamageReceivedFromWindLessPourcent, $translatorInterface),
+                "damageReceivedLight" => $this->getTranslateSubStats($values->getDamagereceivedfromlightlesspourcent(), $this->DamageReceivedFromLightLessPourcent, $translatorInterface),
+                "damageReceivedDark" => $this->getTranslateSubStats($values->getDamagereceivedfromdarklesspourcent(), $this->DamageReceivedFromDarkLessPourcent, $translatorInterface),
+                "atkMoreProportionalToLost" => $this->getTranslateSubStats($values->getAtkmoreproportionaltolosthpuptopourcent(), $this->ATKMoreProportionaltoLostHPUpToPourcent, $translatorInterface),
+                "defMoreProportionalToLost" => $this->getTranslateSubStats($values->getDefmoreproportionaltolosthpuptopourcent(), $this->DEFMoreProportionaltoLostHPUpToPourcent, $translatorInterface),
+                "spdMoreProportionalToLost" => $this->getTranslateSubStats($values->getSpdmoreproportionaltolosthpuptopourcent(), $this->SPDMoreProportionaltoLostHPUpToPourcent, $translatorInterface),
+                "atkIncreasingEffect" => $this->getTranslateSubStats($values->getAtkincreasingeffectmorepourcent(), $this->ATKIncreasingEffectMorePourcent, $translatorInterface),
+                "defIncreasingEffect" => $this->getTranslateSubStats($values->getDefincreasingeffectmorepourcent(), $this->DEFIncreasingEffectMorePourcent, $translatorInterface),
+                "spdIncreasingEffect" => $this->getTranslateSubStats($values->getSpdincreasingeffectmorepourcent(), $this->SPDIncreasingEffectMorePourcent, $translatorInterface),
+                "critRateIncreasingEffect" => $this->getTranslateSubStats($values->getCritrateincreasingeffectmorepourcent(), $this->CRITRateIncreasingEffectMorePourcent, $translatorInterface),
+                "damageDealByCounterAtk" => $this->getTranslateSubStats($values->getDamagedealtbycounterattackmorepourcent(), $this->DamageDealtbyCounterattackMorePourcent, $translatorInterface),
+                "damageDealByAttackingTogether" => $this->getTranslateSubStats($values->getDamagedealtbyattackingtogethermorepourcent(), $this->DamageDealtbyAttackingTogetherMorePourcent, $translatorInterface),
+                "bombDamage" => $this->getTranslateSubStats($values->getBombdamagemorepourcent(), $this->BombDamageMorePourcent, $translatorInterface),
+                "lifeDrain" => $this->getTranslateSubStats($values->getLifedrainmorepourcent(), $this->LifeDrainMorePourcent, $translatorInterface),
+                "hpWhenRevive" => $this->getTranslateSubStats($values->getHpwhenrevivedmorepourcent(), $this->HPwhenRevivedMorePourcent, $translatorInterface),
+                "atkBarWhenRevive" => $this->getTranslateSubStats($values->getAttackbarwhenrevivedmorepourcent(), $this->AttackBarwhenRevivedMorePourcent, $translatorInterface),
+                "damageDealByReflectDmg" => $this->getTranslateSubStats($values->getDamagedealtbyreflectdmgmorepourcent(), $this->DamageDealtbyReflectDMGMorePourcent, $translatorInterface),
+                "additionalDamageByHp" => $this->getTranslateSubStats($values->getAdditionaldamagebypourcentofhp(), $this->AdditionalDamagebyPourcentOfHP, $translatorInterface),
+                "additionalDamageByAtk" => $this->getTranslateSubStats($values->getAdditionaldamagebypourcentofatk(), $this->AdditionalDamagebyPourcentOfATK, $translatorInterface),
+                "additionalDamageByDef" => $this->getTranslateSubStats($values->getAdditionaldamagebypourcentofdef(), $this->AdditionalDamagebyPourcentOfDEF, $translatorInterface),
+                "additionalDamageBySpd" => $this->getTranslateSubStats($values->getAdditionaldamagebypourcentofspd(), $this->AdditionalDamagebyPourcentOfSPD, $translatorInterface),
+                "damageReceivedUnderInabilityEffect" => $this->getTranslateSubStats($values->getDamagereceivedunderinabilityeffectslesspourcent(), $this->DamageReceivedUnderInabilityEffectsLessPourcent, $translatorInterface),
+                "spdUnderInabilityEffect" => $this->getTranslateSubStats($values->getSpdunderinabilityeffectsmorepourcent(), $this->SPDUnderInabilityEffectsMorePourcent, $translatorInterface),
+                "critDmgReceived" => $this->getTranslateSubStats($values->getCritdmgreceivedlesspourcent(), $this->CRITDMGReceivedLessPourcent, $translatorInterface),
+                "crushIngHitDmg" => $this->getTranslateSubStats($values->getCrushinghitdmgmorepourcent(), $this->CrushingHitDMGMorePourcent, $translatorInterface)
             ];
         }
         
@@ -151,461 +153,17 @@ class ManagerArtefacts
     }
 
     /**
-     * @var $subStats
-     */
-    public function getSubsStatsSkill1critdmgmorepourcent($subStats)
-    {
-        if($subStats->getSkill1critdmgmorepourcent() === 2) {
-            return $this->skill1CritDmgMorePourcent;
-        }
-    }
-
-    /**
-     * @var $subStats
-     */
-    public function getSubsStatsSkill2critdmgmorepourcent($subStats)
-    {
-        if($subStats->getSkill2critdmgmorepourcent() === 2) {
-            return $this->skill2CritDmgMorePourcent;
-        }
-    }
-
-    /**
-     * @var $subStats
-     */
-    public function getSubsStatsSkill3critdmgmorepourcent($subStats)
-    {
-        if($subStats->getSkill3critdmgmorepourcent() === 2) {
-            return $this->skill3CritDmgMorePourcent;
-        }
-    }
-
-    /**
-     * @var $subStats
-     */
-    public function getSubsStatsSkill4critdmgmorepourcent($subStats)
-    {
-        if($subStats->getSkill4critdmgmorepourcent() === 2) {
-            return $this->skill4CritDmgMorePourcent;
-        }
-    }
-
-    /**
      *
      * @param [type] $subStats
+     * @param [type] $subsStatsSelect
+     * @param [type] $translatorInterface
+     * @return void
      */
-    public function getSubsStatsSkill1RecoveryMorePourcent($subStats)
+    public function getTranslateSubStats($subStats, $subsStatsSelect, $translatorInterface)
     {
-        if($subStats->getSkill1recoverymorepourcent() === 2) {
-            return $this->skill1RecoveryMorePourcent;
+        if($subStats == 2) {
+            $valueTranslate = $translatorInterface->trans($subsStatsSelect);
+            return $valueTranslate;
         }
     }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSkill2RecoveryMorePourcent($subStats)
-    {
-        if($subStats->getSkill2recoverymorepourcent() === 2) {
-            return $this->skill2RecoveryMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSkill3RecoveryMorePourcent($subStats)
-    {
-        if($subStats->getSkill3recoverymorepourcent() === 2) {
-            return $this->skill3RecoveryMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSkill1accuracymorepourcent($subStats)
-    {
-        if($subStats->getSkill1accuracymorepourcent() === 2) {
-            return $this->skill1AccuracyMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSkill2accuracymorepourcent($subStats)
-    {
-        if($subStats->getSkill2accuracymorepourcent() === 2) {
-            return $this->skill2AccuracyMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSkill3accuracymorepourcent($subStats)
-    {
-        if($subStats->getSkill3accuracymorepourcent() === 2) {
-            return $this->skill3AccuracyMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtonfiremorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtonfiremorepourcent() === 2) {
-            return $this->DamageDealtOnFireMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtonwatermorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtonwatermorepourcent() === 2) {
-            return $this->DamageDealtOnWaterMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtonwindmorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtonwindmorepourcent() === 2) {
-            return $this->DamageDealtOnWindMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtonlightmorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtonlightmorepourcent() === 2) {
-            return $this->DamageDealtOnLightMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtondarkmorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtondarkmorepourcent() === 2) {
-            return $this->DamageDealtOnDarkMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedfromfirelesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedfromfirelesspourcent() === 2) {
-            return $this->DamageReceivedFromFireLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedfromwaterlesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedfromwaterlesspourcent() === 2) {
-            return $this->DamageReceivedFromWaterLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedfromwindlesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedfromwindlesspourcent() === 2) {
-            return $this->DamageReceivedFromWindLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedfromlightlesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedfromlightlesspourcent() === 2) {
-            return $this->DamageReceivedFromLightLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedfromdarklesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedfromdarklesspourcent() === 2) {
-            return $this->DamageReceivedFromDarkLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAtkmoreproportionaltolosthpuptopourcent($subStats)
-    {
-        if($subStats->getAtkmoreproportionaltolosthpuptopourcent() === 2) {
-            return $this->ATKMoreProportionaltoLostHPUpToPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDefmoreproportionaltolosthpuptopourcent($subStats)
-    {
-        if($subStats->getDefmoreproportionaltolosthpuptopourcent() === 2) {
-            return $this->DEFMoreProportionaltoLostHPUpToPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSpdmoreproportionaltolosthpuptopourcent($subStats)
-    {
-        if($subStats->getSpdmoreproportionaltolosthpuptopourcent() === 2) {
-            return $this->SPDMoreProportionaltoLostHPUpToPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAtkincreasingeffectmorepourcent($subStats)
-    {
-        if($subStats->getAtkincreasingeffectmorepourcent() === 2) {
-            return $this->ATKIncreasingEffectMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDefincreasingeffectmorepourcent($subStats)
-    {
-        if($subStats->getDefincreasingeffectmorepourcent() === 2) {
-            return $this->DEFIncreasingEffectMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSpdincreasingeffectmorepourcent($subStats)
-    {
-        if($subStats->getSpdincreasingeffectmorepourcent() === 2) {
-            return $this->SPDIncreasingEffectMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsCritrateincreasingeffectmorepourcent($subStats)
-    {
-        if($subStats->getCritrateincreasingeffectmorepourcent() === 2) {
-            return $this->CRITRateIncreasingEffectMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtbycounterattackmorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtbycounterattackmorepourcent() === 2) {
-            return $this->DamageDealtbyCounterattackMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtbyattackingtogethermorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtbyattackingtogethermorepourcent() === 2) {
-            return $this->DamageDealtbyAttackingTogetherMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsBombdamagemorepourcent($subStats)
-    {
-        if($subStats->getBombdamagemorepourcent() === 2) {
-            return $this->BombDamageMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsLifedrainmorepourcent($subStats)
-    {
-        if($subStats->getLifedrainmorepourcent() === 2) {
-            return $this->LifeDrainMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsHpwhenrevivedmorepourcent($subStats)
-    {
-        if($subStats->getHpwhenrevivedmorepourcent() === 2) {
-            return $this->HPwhenRevivedMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAttackbarwhenrevivedmorepourcent($subStats)
-    {
-        if($subStats->getAttackbarwhenrevivedmorepourcent() === 2) {
-            return $this->AttackBarwhenRevivedMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagedealtbyreflectdmgmorepourcent($subStats)
-    {
-        if($subStats->getDamagedealtbyreflectdmgmorepourcent() === 2) {
-            return $this->DamageDealtbyReflectDMGMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAdditionaldamagebypourcentofhp($subStats)
-    {
-        if($subStats->getAdditionaldamagebypourcentofhp() === 2) {
-            return $this->AdditionalDamagebyPourcentOfHP;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAdditionaldamagebypourcentofatk($subStats)
-    {
-        if($subStats->getAdditionaldamagebypourcentofatk() === 2) {
-            return $this->AdditionalDamagebyPourcentOfATK;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAdditionaldamagebypourcentofdef($subStats)
-    {
-        if($subStats->getAdditionaldamagebypourcentofdef() === 2) {
-            return $this->AdditionalDamagebyPourcentOfDEF;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsAdditionaldamagebypourcentofspd($subStats)
-    {
-        if($subStats->getAdditionaldamagebypourcentofspd() === 2) {
-            return $this->AdditionalDamagebyPourcentOfSPD;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsDamagereceivedunderinabilityeffectslesspourcent($subStats)
-    {
-        if($subStats->getDamagereceivedunderinabilityeffectslesspourcent() === 2) {
-            return $this->DamageReceivedUnderInabilityEffectsLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsSpdunderinabilityeffectsmorepourcent($subStats)
-    {
-        if($subStats->getSpdunderinabilityeffectsmorepourcent() === 2) {
-            return $this->SPDUnderInabilityEffectsMorePourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsCritdmgreceivedlesspourcent($subStats)
-    {
-        if($subStats->getCritdmgreceivedlesspourcent() === 2) {
-            return $this->CRITDMGReceivedLessPourcent;
-        }
-    }
-
-    /**
-     *
-     * @param [type] $subStats
-     */
-    public function getSubsStatsCrushinghitdmgmorepourcent($subStats)
-    {
-        if($subStats->getCrushinghitdmgmorepourcent() === 2) {
-            return $this->CrushingHitDMGMorePourcent;
-        }
-    }
-
 }
