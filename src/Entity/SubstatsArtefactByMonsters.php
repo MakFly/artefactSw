@@ -19,301 +19,301 @@ class SubstatsArtefactByMonsters
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 1 CRIT DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill1CritDmgMorePourcent", type="integer", nullable=false)
      */
-    private $skill1CritDmg;
+    protected $skill1critdmgmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 2 CRIT DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill2CritDmgMorePourcent", type="integer", nullable=false)
      */
-    private $skill2CritDmg;
+    protected $skill2critdmgmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 3 CRIT DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill3CritDmgMorePourcent", type="integer", nullable=false)
      */
-    private $skill3CritDmg;
+    protected $skill3critdmgmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 4 CRIT DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill4CritDmgMorePourcent", type="integer", nullable=false)
      */
-    private $skill4CritDmg;
+    protected $skill4critdmgmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 1 Recovery +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill1RecoveryMorePourcent", type="integer", nullable=false)
      */
-    private $skill1Recovery;
+    protected $skill1recoverymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 2 Recovery +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill2RecoveryMorePourcent", type="integer", nullable=false)
      */
-    private $skill2Recovery;
+    protected $skill2recoverymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 3 Recovery +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill3RecoveryMorePourcent", type="integer", nullable=false)
      */
-    private $skill3Recovery;
+    protected $skill3recoverymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 1 Accruarcy +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill1AccuracyMorePourcent", type="integer", nullable=false)
      */
-    private $skill1Accruarcy;
+    protected $skill1accuracymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 2 Accruarcy +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill2AccuracyMorePourcent", type="integer", nullable=false)
      */
-    private $skill2Accruarcy;
+    protected $skill2accuracymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Skill 3 Accruarcy +%", type="integer", nullable=false)
+     * @ORM\Column(name="skill3AccuracyMorePourcent", type="integer", nullable=false)
      */
-    private $skill3Accruarcy;
+    protected $skill3accuracymorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt on Fire +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtOnFireMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtOnFire;
+    protected $damagedealtonfiremorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt on Water +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtOnWaterMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtOnWater;
+    protected $damagedealtonwatermorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt on Wind +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtOnWindMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtOnWind;
+    protected $damagedealtonwindmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt on Light +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtOnLightMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtOnLight;
+    protected $damagedealtonlightmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt on Dark +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtOnDarkMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtOnDark;
+    protected $damagedealtondarkmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received from Fire -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedFromFireLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedFromFire;
+    protected $damagereceivedfromfirelesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received from Water -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedFromWaterLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedFromWater;
+    protected $damagereceivedfromwaterlesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received from Wind -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedFromWindLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedFromWind;
+    protected $damagereceivedfromwindlesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received from Light -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedFromLightLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedFromLight;
+    protected $damagereceivedfromlightlesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received from Dark -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedFromDarkLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedFromDark;
+    protected $damagereceivedfromdarklesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="ATK+ Proportional to Lost HP up to %", type="integer", nullable=false)
+     * @ORM\Column(name="ATKMoreProportionaltoLostHPUpToPourcent", type="integer", nullable=false)
      */
-    private $atkProportionalToLostHpUpTo;
+    protected $atkmoreproportionaltolosthpuptopourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="DEF+ Proportional to Lost HP up to %", type="integer", nullable=false)
+     * @ORM\Column(name="DEFMoreProportionaltoLostHPUpToPourcent", type="integer", nullable=false)
      */
-    private $defProportionalToLostHpUpTo;
+    protected $defmoreproportionaltolosthpuptopourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="SPD+ Proportional to Lost HP up to %", type="integer", nullable=false)
+     * @ORM\Column(name="SPDMoreProportionaltoLostHPUpToPourcent", type="integer", nullable=false)
      */
-    private $spdProportionalToLostHpUpTo;
+    protected $spdmoreproportionaltolosthpuptopourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="ATK Increasing Effect +%", type="integer", nullable=false)
+     * @ORM\Column(name="ATKIncreasingEffectMorePourcent", type="integer", nullable=false)
      */
-    private $atkIncreasingEffect;
+    protected $atkincreasingeffectmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="DEF Increasing Effect +%", type="integer", nullable=false)
+     * @ORM\Column(name="DEFIncreasingEffectMorePourcent", type="integer", nullable=false)
      */
-    private $defIncreasingEffect;
+    protected $defincreasingeffectmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="SPD Increasing Effect +%", type="integer", nullable=false)
+     * @ORM\Column(name="SPDIncreasingEffectMorePourcent", type="integer", nullable=false)
      */
-    private $spdIncreasingEffect;
+    protected $spdincreasingeffectmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="CRIT Rate Increasing Effect +%", type="integer", nullable=false)
+     * @ORM\Column(name="CRITRateIncreasingEffectMorePourcent", type="integer", nullable=false)
      */
-    private $critRateIncreasingEffect;
+    protected $critrateincreasingeffectmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt by Counterattack +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtbyCounterattackMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtByCounterattack;
+    protected $damagedealtbycounterattackmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt by Attacking Together +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtbyAttackingTogetherMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtByAttackingTogether;
+    protected $damagedealtbyattackingtogethermorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Bomb Damage +%", type="integer", nullable=false)
+     * @ORM\Column(name="BombDamageMorePourcent", type="integer", nullable=false)
      */
-    private $bombDamage;
+    protected $bombdamagemorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Life Drain +%", type="integer", nullable=false)
+     * @ORM\Column(name="LifeDrainMorePourcent", type="integer", nullable=false)
      */
-    private $lifeDrain;
+    protected $lifedrainmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="HP when Revived +%", type="integer", nullable=false)
+     * @ORM\Column(name="HPwhenRevivedMorePourcent", type="integer", nullable=false)
      */
-    private $hpWhenRevived;
+    protected $hpwhenrevivedmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Attack Bar when Revived +%", type="integer", nullable=false)
+     * @ORM\Column(name="AttackBarwhenRevivedMorePourcent", type="integer", nullable=false)
      */
-    private $attackBarWhenRevived;
+    protected $attackbarwhenrevivedmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Dealt by Reflect DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageDealtbyReflectDMGMorePourcent", type="integer", nullable=false)
      */
-    private $damageDealtByReflectDmg;
+    protected $damagedealtbyreflectdmgmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Additional Damage by % of HP", type="integer", nullable=false)
+     * @ORM\Column(name="AdditionalDamagebyPourcentOfHP", type="integer", nullable=false)
      */
-    private $additionalDamageByOfHp;
+    protected $additionaldamagebypourcentofhp;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Additional Damage by % of ATK", type="integer", nullable=false)
+     * @ORM\Column(name="AdditionalDamagebyPourcentOfATK", type="integer", nullable=false)
      */
-    private $additionalDamageByOfAtk;
+    protected $additionaldamagebypourcentofatk;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Additional Damage by % of DEF", type="integer", nullable=false)
+     * @ORM\Column(name="AdditionalDamagebyPourcentOfDEF", type="integer", nullable=false)
      */
-    private $additionalDamageByOfDef;
+    protected $additionaldamagebypourcentofdef;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Additional Damage by % of SPD", type="integer", nullable=false)
+     * @ORM\Column(name="AdditionalDamagebyPourcentOfSPD", type="integer", nullable=false)
      */
-    private $additionalDamageByOfSpd;
+    protected $additionaldamagebypourcentofspd;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Damage Received Under Inability Effects -%", type="integer", nullable=false)
+     * @ORM\Column(name="DamageReceivedUnderInabilityEffectsLessPourcent", type="integer", nullable=false)
      */
-    private $damageReceivedUnderInabilityEffects;
+    protected $damagereceivedunderinabilityeffectslesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="SPD Under Inability Effects +%", type="integer", nullable=false)
+     * @ORM\Column(name="SPDUnderInabilityEffectsMorePourcent", type="integer", nullable=false)
      */
-    private $spdUnderInabilityEffects;
+    protected $spdunderinabilityeffectsmorepourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="CRIT DMG Received -%", type="integer", nullable=false)
+     * @ORM\Column(name="CRITDMGReceivedLessPourcent", type="integer", nullable=false)
      */
-    private $critDmgReceived;
+    protected $critdmgreceivedlesspourcent;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Crushing Hit DMG +%", type="integer", nullable=false)
+     * @ORM\Column(name="CrushingHitDMGMorePourcent", type="integer", nullable=false)
      */
-    private $crushingHitDmg;
+    protected $crushinghitdmgmorepourcent;
 
     /**
      * @var \Monsters
@@ -323,7 +323,136 @@ class SubstatsArtefactByMonsters
      *   @ORM\JoinColumn(name="id_monsters", referencedColumnName="id")
      * })
      */
-    private $idMonsters;
+    protected $idMonsters;
 
 
+    /**
+     * Get the value of idMonsters
+     *
+     * @return  \Monsters
+     */ 
+    public function getIdMonsters()
+    {
+        return $this->idMonsters;
+    }
+
+    /**
+     * Get the value of crushinghitdmgmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getCrushinghitdmgmorepourcent()
+    {
+        return $this->crushinghitdmgmorepourcent;
+    }
+
+    /**
+     * Get the value of critdmgreceivedlesspourcent
+     *
+     * @return  int
+     */ 
+    public function getCritdmgreceivedlesspourcent()
+    {
+        return $this->critdmgreceivedlesspourcent;
+    }
+
+    /**
+     * Get the value of skill1critdmgmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getSkill1critdmgmorepourcent()
+    {
+        return $this->skill1critdmgmorepourcent;
+    }
+
+    /**
+     * Get the value of spdunderinabilityeffectsmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getSpdunderinabilityeffectsmorepourcent()
+    {
+        return $this->spdunderinabilityeffectsmorepourcent;
+    }
+
+    /**
+     * Get the value of damagereceivedunderinabilityeffectslesspourcent
+     *
+     * @return  int
+     */ 
+    public function getDamagereceivedunderinabilityeffectslesspourcent()
+    {
+        return $this->damagereceivedunderinabilityeffectslesspourcent;
+    }
+
+    /**
+     * Get the value of additionaldamagebypourcentofspd
+     *
+     * @return  int
+     */ 
+    public function getAdditionaldamagebypourcentofspd()
+    {
+        return $this->additionaldamagebypourcentofspd;
+    }
+
+    /**
+     * Get the value of additionaldamagebypourcentofdef
+     *
+     * @return  int
+     */ 
+    public function getAdditionaldamagebypourcentofdef()
+    {
+        return $this->additionaldamagebypourcentofdef;
+    }
+
+    /**
+     * Get the value of additionaldamagebypourcentofatk
+     *
+     * @return  int
+     */ 
+    public function getAdditionaldamagebypourcentofatk()
+    {
+        return $this->additionaldamagebypourcentofatk;
+    }
+
+    /**
+     * Get the value of additionaldamagebypourcentofhp
+     *
+     * @return  int
+     */ 
+    public function getAdditionaldamagebypourcentofhp()
+    {
+        return $this->additionaldamagebypourcentofhp;
+    }
+
+    /**
+     * Get the value of skill2critdmgmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getSkill2critdmgmorepourcent()
+    {
+        return $this->skill2critdmgmorepourcent;
+    }
+
+    /**
+     * Get the value of skill3critdmgmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getSkill3critdmgmorepourcent()
+    {
+        return $this->skill3critdmgmorepourcent;
+    }
+
+    /**
+     * Get the value of skill4critdmgmorepourcent
+     *
+     * @return  int
+     */ 
+    public function getSkill4critdmgmorepourcent()
+    {
+        return $this->skill4critdmgmorepourcent;
+    }
 }

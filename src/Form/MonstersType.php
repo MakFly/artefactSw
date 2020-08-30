@@ -14,7 +14,6 @@ class MonstersType extends AbstractType
 {
      public function buildForm(FormBuilderInterface $builder, array $options)
     {        
-        dump($options);
         $builder->add('awake', EntityType::class, [
             // looks for choices from this entity
             'class' => Monsters::class,

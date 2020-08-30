@@ -3,12 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Monsters
  *
- * @ApiResource
  * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
  * @ORM\Entity
  */
@@ -75,20 +73,16 @@ class Monsters
      */
     private $idPreferedStats;
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
 
     /**
-     * @return string
-     */
-    public function getAwake()
+     * Get the value of idPreferedStats
+     *
+     * @return  \PreferedStats
+     */ 
+    public function getIdPreferedStats()
     {
-        return $this->awake;
+        return $this->idPreferedStats;
     }
 
     /**
@@ -99,6 +93,16 @@ class Monsters
     public function getRanking()
     {
         return $this->ranking;
+    }
+
+    /**
+     * Get the value of awake
+     *
+     * @return  string
+     */ 
+    public function getAwake()
+    {
+        return $this->awake;
     }
 
     /**
@@ -139,29 +143,5 @@ class Monsters
     public function getGrade()
     {
         return $this->grade;
-    }
-
-    /**
-     * Get the value of idPreferedStats
-     *
-     * @return \PreferedStats
-     */ 
-    public function getIdPreferedStats()
-    {
-        return $this->idPreferedStats;
-    }
-
-    /**
-     * Set the value of awake
-     *
-     * @param  string  $awake
-     *
-     * @return  self
-     */ 
-    public function setAwake(string $awake)
-    {
-        $this->awake = $awake;
-
-        return $this;
     }
 }

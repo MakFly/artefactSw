@@ -5,20 +5,31 @@
 {% block javascripts %}
 <script>
 
-
-$(document).ready(function(){
-
-  // Initialize Select2
-  $('#monsters_awake').select();
-
-  // Set option selected onchange
-  $('#monsters_awake').change(function(){
-    var value = $(this).val();
-
-    console.log(value);
-
-
-  });
+/*
+* Permet de récupéré la value de l'option select
+* en faisant ce genre de request ajax on peut renvoyé la value dans la request que le controller reprend :
+* $idSelect = $request->request->get('idSelect');
+* 
+*/
+$('#monsters_awake').change(function() {
+	var idMonsters = $(this).val();
+  
+	$.ajax({
+		url: '{{ path('ajax_monsters_action') }}',
+		type: "POST",
+		dataType: "json",
+			data: {
+				"idMonsters": idMonsters
+			},
+			async: true,
+			success: function (data) {
+				$('#textAjax').text(data.info);
+				$('#textAjax2').text(data.info2);
+				$('#textAjax3').text(data.info3);
+				$('#textAjax4').text(data.info4);
+				$('#textAjax5').text(data.info5);
+			}
+	})
 });
 
 </script>
@@ -48,10 +59,18 @@ $(document).ready(function(){
 </nav>
 
 <div class="container" style="margin-top: 100px">
-  {{ form_start(formMonsters) }}
-
-    {{ form_widget(formMonsters.awake) }}
-    
-  {{ form_end(formMonsters) }}
+  <div class="row">
+   
+  </div>
 </div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      {{ form_widget(formMonsters.awake) }}  
+      {% include 'monstersByArtefact/responseArtefactByMonster.html.twig' %}
+    </div>
+  </div>
+</div>
+
 {% endblock %}
