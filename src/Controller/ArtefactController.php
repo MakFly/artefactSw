@@ -9,7 +9,6 @@ use App\Repository\SubstatsArtefactByMonstersRepository;
 use App\Services\MontersByArtefactsSubsServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -59,8 +58,8 @@ class ArtefactController extends AbstractController
         /* doctrine : on récupère la data en bdd pour la comparé avec l'option value envoyé  */
         $resultArtefactByMonsters = $substatsArtefactByMonstersRepository->findEntitiesByIdMonsters($idMonsters);
         
-        $manager = new ManagerArtefacts();
-        $monsters = new MontersByArtefactsSubsServices($manager);
+        $managerArtefacts = new ManagerArtefacts();
+        $monsters = new MontersByArtefactsSubsServices($managerArtefacts);
         $arraySubsStatsByMonster = $monsters->showArtefactsByMonsters($resultArtefactByMonsters);
 
         $dataArtefactByMonsters = [];
@@ -68,6 +67,7 @@ class ArtefactController extends AbstractController
             $dataArtefactByMonsters[$key] = $value;
         }
 
+        /** Response ajax de monster */
         return $monsters->response($dataArtefactByMonsters);
     }
 }
