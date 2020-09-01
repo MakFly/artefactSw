@@ -8,3 +8,63 @@ name: Nom
 stars: Étoiles
 family: Famille
 preferedFlatStat: Flat Stat Préféré
+
+#SubStats
+#critDmg
+Skill 1 CRIT DMG +%: Dégâts des Critiques Compétence 1 CRIT DMG +%
+Skill 2 CRIT DMG +%: Dégâts des Critiques Compétence 2 CRIT DMG +%
+Skill 3 CRIT DMG +%: Dégâts des Critiques Compétence 3 CRIT DMG +%
+Skill 4 CRIT DMG +%: Dégâts des Critiques Compétence 4 CRIT DMG +%
+
+#recovery
+Skill 1 Recovery +%: Récupération Compétence 1 +%
+Skill 2 Recovery +%: Récupération Compétence 2 +%
+Skill 3 Recovery +%: Récupération Compétence 3 +%
+
+#accuracy
+Skill 1 Accuracy +%: Précision Compétence 1 +%
+Skill 2 Accuracy +%: Précision Compétence 2 +%
+Skill 3 Accuracy +%: Précision Compétence 3 +%
+
+#DMG by elements
+Damage Dealt on Fire +%: Dégâts infligés au Feu +%
+Damage Dealt on Water +%: Dégâts infligés à l'Eau +%
+Damage Dealt on Wind +%: Dégâts infligés au Vent +%
+Damage Dealt on Light +%: Dégâts infligés à la lumière +%
+Damage Dealt on Dark +%: Dégâts infligés aux Ténèbres +%
+
+#DMG received
+Damage Received from Fire -%: Dégâts reçus du Feu -%
+Damage Received from Water -%: Dégâts reçus de l'Eau -%
+Damage Received from Wind -%: Dégâts reçus du Vent -%
+Damage Received from Light -%: Dégâts reçus de la Lumière -%
+Damage Received from Dark -%: Dégâts reçus des Ténèbres -%
+
+#OTHER
+ATK+ Proportional to Lost HP up to %: ATQ Prop. des PV perdus jusqu'à +%
+DEF+ Proportional to Lost HP up to %: DEF Prop. des PV perdus jusqu'à +%
+SPD+ Proportional to Lost HP up to %: SPD Prop. des PV perdus jusqu'à +%
+
+ATK Increasing Effect +%: Effet renforcement ATQ +%
+DEF Increasing Effect +%: Effet renforcement DEF +%
+SPD Increasing Effect +%: Effet renforcement SPD +%
+
+CRIT Rate Increasing Effect +%: Effet augmentation taux critique +%
+Damage Dealt by Counterattack +%: Dégâts de aontre-attaque +%
+Damage Dealt by Attacking Together +%: Dégâts d'attaque aonjointe +%
+
+Bomb Damage +%: Dégats De Bombe +%
+Life Drain +%: Drain de vie +%
+HP when Revived +%: Pv Après Résurrection +%
+Attack Bar when Revived +%: Jauge D'Attaque Après Resurrection +%
+Damage Dealt by Reflect DMG +%: Dégats Reçu Par Réflexion +%
+
+Additional Damage by % of HP: Dégâts supp. de x% des PV 
+Additional Damage by % of ATK: Dégâts supp. de x% de l'ATQ
+Additional Damage by % of DEF: Dégâts supp. de x% de la DEF
+Additional Damage by % of SPD: Dégâts supp. de x% de la SPD
+
+Damage Received Under Inability Effects -%: Dégâts Reçus sous effet d'incapacité -%
+SPD Under Inability Effects +%:  VIT sous effet d'incapacité +%
+CRIT DMG Received -%: Dégâts des critiques reçu -%
+Crushing Hit DMG +%: Dégats des coups devastateurs +%
