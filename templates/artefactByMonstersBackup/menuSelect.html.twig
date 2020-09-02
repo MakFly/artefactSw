@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="card card-body">
+        <form>
+            {# element #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'element'|trans}}</label>
+                {{ form_widget(formElementType.name) }}
+            </div>
+            {# Flat stat #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'flatStat'|trans}}</label>
+                {{ form_widget(formFlatStat.name) }}
+            </div>
+            {# substat 1 #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'subsStat1'|trans}}</label>
+                {{ form_widget(formsubStatsType.name) }}
+            </div>
+            {# substat 2 #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'subsStat2'|trans}}</label>
+                {{ form_widget(formsubStatsType2.name) }}
+            </div>
+            {# substat 3 #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'subsStat3'|trans}}</label>
+                {{ form_widget(formsubStatsType3.name) }}
+            </div>
+            {# substat 4 #}
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">{{ 'subsStat4'|trans}}</label>
+                {{ form_widget(formsubStatsType4.name) }}
+            </div>
+        </form>   
+    </div>
+</div>
+{% endblock %}

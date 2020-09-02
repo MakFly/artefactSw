@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PreferedStats
  *
  * @ORM\Table(name="prefered_stats", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PreferedStatsRepository")
  */
 class PreferedStats
 {
@@ -29,4 +29,14 @@ class PreferedStats
     private $name;
 
 
+
+    /**
+     * Get the value of name
+     *
+     * @return  string
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
 }

@@ -10,6 +10,18 @@ family: Famille
 preferedFlatStat: Flat Stat Préféré
 
 #SubStats
+subsStat1: Sous-Stat 1
+subsStat2: Sous-Stat 2
+subsStat3: Sous-Stat 3
+subsStat4: Sous-Stat 4
+
+#ElementTypeForm
+FIRE: Feu
+WATER: Eau
+WIND: Vent
+LIGHT: Lumière
+DARK: Ténèbre
+
 #critDmg
 Skill 1 CRIT DMG +%: Dégâts des Critiques Compétence 1 CRIT DMG +%
 Skill 2 CRIT DMG +%: Dégâts des Critiques Compétence 2 CRIT DMG +%
