@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SubstatArtefact
+ * FlatStats
  *
- * @ORM\Table(name="substat_artefact")
- * @ORM\Entity(repositoryClass="App\Repository\SubstatArtefactRepository")
+ * @ORM\Table(name="flat_stats")
+ * @ORM\Entity(repositoryClass="App\Repository\FlatStatsRepository")
  */
-class SubstatArtefact
+class FlatStats
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class SubstatArtefact
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=155, nullable=false)
+     * @ORM\Column(name="name", type="string", length=20, nullable=false)
      */
     private $name;
 

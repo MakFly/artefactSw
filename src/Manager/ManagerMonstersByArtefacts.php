@@ -2,12 +2,10 @@
 
 namespace App\Manager;
 
-use Symfony\Component\Translation\Translator;
-
 /**
  * @Author Inopan
  */
-class ManagerArtefacts
+class ManagerMonstersByArtefacts
 {
     /** @var string */
     private $skill1CritDmgMorePourcent = "Skill 1 CRIT DMG +%";

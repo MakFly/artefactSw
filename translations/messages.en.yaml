@@ -10,6 +10,18 @@ family: Family
 preferedFlatStat: Prefered Flat Stat
 
 #SubStats
+subsStat1: Stat 1
+subsStat2: Stat 2
+subsStat3: Stat 3
+subsStat4: Stat 4
+
+#ElementTypeForm
+FIRE: Fire
+WATER: Water
+WIND: Wind
+LIGHT: Light
+DARK: Dark
+
 #critDmg
 Skill 1 CRIT DMG +%: Skill 1 CRIT DMG +%
 Skill 2 CRIT DMG +%: Skill 2 CRIT DMG +%

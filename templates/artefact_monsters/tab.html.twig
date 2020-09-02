@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artefact Sw{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ 'stars'|trans }}</th>
+            <th scope="col">{{ 'name'|trans }}</th>
+            <th scope="col">{{ 'element'|trans }}</th>
+            <th scope="col">{{ 'family'|trans }}</th>
+            <th scope="col">{{ 'preferedFlatStat'|trans }}</th>
+            <th scope="col">{{ 'subsStat1'|trans }}</th>
+            <th scope="col">{{ 'subsStat2'|trans }}</th>
+            <th scope="col">{{ 'subsStat3'|trans }}</th>
+            <th scope="col">{{ 'subsStat4'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+            <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+            <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+                <td>@twitter</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

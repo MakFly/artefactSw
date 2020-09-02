@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Monsters
  *
- * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
- * @ORM\Entity
+ * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="fk_id_element_type", columns={"id_element_type"}), @ORM\Index(name="fk_id_subs_stats_artefact_by_monsters", columns={"id_substats_artefact_by_monsters"}), @ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
+ * @ORM\Entity(repositoryClass="App\Repository\MonstersRepository")
  */
 class Monsters
 {
@@ -31,16 +31,11 @@ class Monsters
     /**
      * @var string
      *
+     * Famille
+     * 
      * @ORM\Column(name="monster", type="string", length=255, nullable=false)
      */
     private $monster;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="element", type="string", length=255, nullable=false)
-     */
-    private $element;
 
     /**
      * @var string
@@ -64,6 +59,16 @@ class Monsters
     private $ranking;
 
     /**
+     * @var \ElementType
+     *
+     * @ORM\ManyToOne(targetEntity="ElementType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_element_type", referencedColumnName="id")
+     * })
+     */
+    private $idElementType;
+
+    /**
      * @var \PreferedStats
      *
      * @ORM\ManyToOne(targetEntity="PreferedStats")
@@ -73,56 +78,26 @@ class Monsters
      */
     private $idPreferedStats;
 
+    /**
+     * @var \SubstatsArtefactByMonsters
+     *
+     * @ORM\ManyToOne(targetEntity="SubstatsArtefactByMonsters")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_substats_artefact_by_monsters", referencedColumnName="id")
+     * })
+     */
+    private $idSubstatsArtefactByMonsters;
+
 
 
     /**
-     * Get the value of idPreferedStats
+     * Get the value of grade
      *
-     * @return  \PreferedStats
+     * @return  int
      */ 
-    public function getIdPreferedStats()
+    public function getGrade()
     {
-        return $this->idPreferedStats;
-    }
-
-    /**
-     * Get the value of ranking
-     *
-     * @return  string
-     */ 
-    public function getRanking()
-    {
-        return $this->ranking;
-    }
-
-    /**
-     * Get the value of awake
-     *
-     * @return  string
-     */ 
-    public function getAwake()
-    {
-        return $this->awake;
-    }
-
-    /**
-     * Get the value of type
-     *
-     * @return  string
-     */ 
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Get the value of element
-     *
-     * @return  string
-     */ 
-    public function getElement()
-    {
-        return $this->element;
+        return $this->grade;
     }
 
     /**
@@ -136,12 +111,32 @@ class Monsters
     }
 
     /**
-     * Get the value of grade
+     * Get the value of type
      *
-     * @return  int
+     * @return  string
      */ 
-    public function getGrade()
+    public function getType()
     {
-        return $this->grade;
+        return $this->type;
+    }
+
+    /**
+     * Get the value of awake
+     *
+     * @return  string
+     */ 
+    public function getAwake()
+    {
+        return $this->awake;
+    }
+
+    /**
+     * Get the value of ranking
+     *
+     * @return  string
+     */ 
+    public function getRanking()
+    {
+        return $this->ranking;
     }
 }
