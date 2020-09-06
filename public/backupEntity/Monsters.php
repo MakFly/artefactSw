@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Monsters
  *
- * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="fk_id_element_type", columns={"id_element_type"}), @ORM\Index(name="fk_id_flat_stats", columns={"id_flat_stats"}), @ORM\Index(name="fk_id_subs_stats_artefact_by_monsters", columns={"id_substats_artefact_by_monsters"}), @ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
- * @ORM\Entity
+ * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="fk_id_element_type", columns={"id_element_type"}), @ORM\Index(name="fk_id_subs_stats_artefact_by_monsters", columns={"id_substats_artefact_by_monsters"}), @ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
+ * @ORM\Entity(repositoryClass="App\Repository\MonstersRepository")
  */
 class Monsters
 {
@@ -31,6 +31,8 @@ class Monsters
     /**
      * @var string
      *
+     * Famille
+     * 
      * @ORM\Column(name="monster", type="string", length=255, nullable=false)
      */
     private $monster;
@@ -67,16 +69,6 @@ class Monsters
     private $idElementType;
 
     /**
-     * @var \FlatStats
-     *
-     * @ORM\ManyToOne(targetEntity="FlatStats")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_flat_stats", referencedColumnName="id")
-     * })
-     */
-    private $idFlatStats;
-
-    /**
      * @var \PreferedStats
      *
      * @ORM\ManyToOne(targetEntity="PreferedStats")
@@ -96,7 +88,8 @@ class Monsters
      */
     private $idSubstatsArtefactByMonsters;
 
-/**
+
+    /**
      * Get the value of grade
      *
      * @return  int

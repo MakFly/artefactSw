@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SubstatsArtefactByMonsters
  *
  * @ORM\Table(name="substats_artefact_by_monsters", indexes={@ORM\Index(name="fk_id_monsters", columns={"id_monsters"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\SubstatsArtefactByMonstersRepository")
  */
 class SubstatsArtefactByMonsters
 {
@@ -322,7 +322,7 @@ class SubstatsArtefactByMonsters
      */
     private $crushinghitdmgmorepourcent;
 
-/**
+    /**
      * Get the value of skill1critdmgmorepourcent
      *
      * @return  int

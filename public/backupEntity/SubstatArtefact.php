@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PreferedStats
+ * SubstatArtefact
  *
- * @ORM\Table(name="prefered_stats", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Table(name="substat_artefact")
+ * @ORM\Entity(repositoryClass="App\Repository\SubstatArtefactRepository")
  */
-class PreferedStats
+class SubstatArtefact
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class PreferedStats
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=155, nullable=false)
      */
     private $name;
 
@@ -38,5 +38,15 @@ class PreferedStats
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId()
+    {
+        return $this->id;
     }
 }

@@ -4,12 +4,18 @@ namespace App\Controller;
 
 use App\Entity\ElementType;
 use App\Entity\FlatStats;
+use App\Entity\Ranking;
 use App\Entity\SubstatArtefact;
 use App\Form\ElementTypeForm;
 use App\Form\FlatStatsType;
 use App\Form\SubStatArtefactType;
+use App\Manager\RankingAllSkillsManager;
+use App\Manager\RankingManager;
+use App\Repository\MonstersRepository;
+use App\Service\RankingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -49,8 +55,56 @@ class ArtefactMonstersController extends AbstractController
     /**
     * @Route("/ajax_artefact", name="ajax_artefact_action")
     */
-    public function ajaxArtefactAction(Request $request, TranslatorInterface $translatorInterface)
+    public function ajaxArtefactAction(Request $request, TranslatorInterface $translatorInterface, MonstersRepository $monstersRepository)
     {
-        
+         /************* Update VERSION 0.3 *****************/
+
+        $rankingAllSkillsManager = new RankingAllSkillsManager();
+        $managerRanking = new RankingManager($rankingAllSkillsManager);
+        $rankingMonstersSubStats = new RankingService($managerRanking);
+
+        /* on récupère la valeur envoyée */
+        $selectElement_type_form_name = $request->request->get('selectElement_type_form_name');
+        $selectFlatType = $request->request->get('selectFlatType');
+        $filterSubStatOne = $request->request->get('selectFormsubStatsType1');
+        $filterSubStatTwo = $request->request->get('selectFormsubStatsType2');
+        $selectFormsubStatsType3 = $request->request->get('selectFormsubStatsType3');
+        $selectFormsubStatsType4 = $request->request->get('selectFormsubStatsType4');
+
+        /* doctrine : on récupère la data en bdd pour la comparé avec l'option value envoyé  */
+        // $result = $ajaxJqueryTrainingRepository->findEntitiesById($selectElementType);
+
+        $info = [];
+        $monsterFilterByTwoParameters = "";
+        $rankings = "";
+        if (!empty($selectElement_type_form_name) && !empty($selectFlatType) && !empty($filterSubStatOne)) {         
+
+            /** search Monster by this two first filters */
+            $monsterFilterByTwoParameters = $monstersRepository->searchMonstersByFilters($selectElement_type_form_name, $selectFlatType);
+            
+            /** calcul du ranking */
+            $rankings = $rankingMonstersSubStats->rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo);
+
+            
+            if(!empty($rankings)) {
+                foreach($rankings as $monstersRanking){
+                    $info[] = [
+                        "id" => $monstersRanking['id'],
+                        "awake" => $monstersRanking['awake'],
+                        "element" => $monstersRanking['element'],
+                        "type" => $monstersRanking['type'],
+                        "family" => $monstersRanking['family'],
+                        "prefered_flat_stats" => $monstersRanking['prefered_flat_stats'],
+                    ];       
+                }                   
+            }
+
+            $response = new Response(json_encode(array(
+                'info' => $info
+            )));
+            $response->headers->set('Content-Type', 'application/json');
+    
+            return $response;
+        }
     }
 }

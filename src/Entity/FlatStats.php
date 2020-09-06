@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * FlatStats
  *
  * @ORM\Table(name="flat_stats")
- * @ORM\Entity(repositoryClass="App\Repository\FlatStatsRepository")
+ * @ORM\Entity
  */
 class FlatStats
 {

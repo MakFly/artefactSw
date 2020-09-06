@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SubstatArtefact
  *
  * @ORM\Table(name="substat_artefact")
- * @ORM\Entity(repositoryClass="App\Repository\SubstatArtefactRepository")
+ * @ORM\Entity
  */
 class SubstatArtefact
 {

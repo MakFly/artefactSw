@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PreferedStats
+ * FlatStats
  *
- * @ORM\Table(name="prefered_stats", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Table(name="flat_stats")
+ * @ORM\Entity(repositoryClass="App\Repository\FlatStatsRepository")
  */
-class PreferedStats
+class FlatStats
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class PreferedStats
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=20, nullable=false)
      */
     private $name;
 
