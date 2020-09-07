@@ -63,13 +63,14 @@ class ArtefactMonstersController extends AbstractController
         $managerRanking = new RankingManager($rankingAllSkillsManager);
         $rankingMonstersSubStats = new RankingService($managerRanking);
 
+
         /* on récupère la valeur envoyée */
         $selectElement_type_form_name = $request->request->get('selectElement_type_form_name');
         $selectFlatType = $request->request->get('selectFlatType');
         $filterSubStatOne = $request->request->get('selectFormsubStatsType1');
         $filterSubStatTwo = $request->request->get('selectFormsubStatsType2');
-        $selectFormsubStatsType3 = $request->request->get('selectFormsubStatsType3');
-        $selectFormsubStatsType4 = $request->request->get('selectFormsubStatsType4');
+        $filterSubStatThree = $request->request->get('selectFormsubStatsType3');
+        $filterSubStatFour = $request->request->get('selectFormsubStatsType4');
 
         /* doctrine : on récupère la data en bdd pour la comparé avec l'option value envoyé  */
         // $result = $ajaxJqueryTrainingRepository->findEntitiesById($selectElementType);
@@ -83,7 +84,7 @@ class ArtefactMonstersController extends AbstractController
             $monsterFilterByTwoParameters = $monstersRepository->searchMonstersByFilters($selectElement_type_form_name, $selectFlatType);
             
             /** calcul du ranking */
-            $rankings = $rankingMonstersSubStats->rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo);
+            $rankings = $rankingMonstersSubStats->rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
 
             
             if(!empty($rankings)) {

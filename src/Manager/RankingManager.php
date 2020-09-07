@@ -18,67 +18,75 @@ class RankingManager
         $this->rankingAllSkillsManager = $rankingAllSkillsManager;
     }
 
-    public function verifRankingMonstersBySubStat($value, $filterSubStatOne, $filterSubStatTwo) 
+    public function verifRankingMonstersBySubStat($value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour) 
     {
         $skills = $value->getIdSubstatsArtefactByMonsters();
-        return $this->rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo);
+        return $this->rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
     }
 
     /**
      * Test rankings
      */
-    public function rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo)
+    public function rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {   
-        if (!empty($filterSubStatOne)) {
-            $rankingChangeOne = $this->rankingAllSkillsManager->filterOne($skills, $value, $filterSubStatOne);
-            $rankingChangeTwo = $this->rankingAllSkillsManager->filterTwo($skills, $value, $filterSubStatTwo);
-        
-            return $this->sortDescRanking($rankingChangeOne, $rankingChangeTwo, $value); 
-        }
-    }
+        $rankingChangeOne = $this->rankingAllSkillsManager->filterOne($skills, $value, $filterSubStatOne);
+        $rankingChangeTwo = $this->rankingAllSkillsManager->filterTwo($skills, $value, $filterSubStatTwo);
+        $rankingChangeThree = $this->rankingAllSkillsManager->filterThree($skills, $value, $filterSubStatThree);
 
-    /**
-     * real Ranking by filters
-     */
-    public function sortDescRanking($rankingChangeOne, $rankingChangeTwo, $value)
-    {
-        $rankFinal = 0;
-        if(!empty($rankingChangeTwo)) {
+        if(!empty($filterSubStatOne) && empty($filterSubStatTwo) ) {
+            return $this->sortDescRanking($rankingChangeOne, $value);
+        }
+
+        if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && empty($filterSubStatThree) ) {
+            $tmpRank = [];
 
             if($rankingChangeOne['ranking'] != $rankingChangeTwo['ranking']) {
-                $rankFinal = $rankingChangeTwo['ranking'];
+                $tmpRank = $rankingChangeTwo['ranking'];
             } else {
-                $rankFinal = $rankingChangeOne['ranking'];
+                $tmpRank = $rankingChangeOne['ranking'];
             }
 
-            return $this->getTmpRankingValuesMonsters(
-                $value->getId(), 
-                $value->getAwake(), 
-                $value->getIdElementType()->getName(), 
-                $value->getType(), 
-                $value->getMonster(), 
-                $value->getIdPreferedStats()->getName(),
-                number_format($rankFinal, 19, ',', ' ')
-            );
+            return $this->sortDescRanking($tmpRank, $value);
+        }
 
-        } else {
+        if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && empty($filterSubStatFour)) {
             
-            $rankFinal = $rankingChangeOne['ranking'];
+            $tmpRank = [];
+            if($rankingChangeOne['ranking'] == $rankingChangeTwo['ranking']) {
+                $tmpRank = array_merge($rankingChangeOne, $rankingChangeTwo);
+            }
+            if($rankingChangeOne['ranking'] == $rankingChangeThree['ranking']) {
+                $tmpRank = array_merge($rankingChangeOne, $rankingChangeThree);
+            }
+            if($rankingChangeTwo['ranking'] == $rankingChangeThree['ranking']) {
+                $tmpRank = array_merge($rankingChangeTwo, $rankingChangeThree);
+            }
+           
+            return $this->sortDescRanking($tmpRank, $value);
+        }
 
-            return $this->getTmpRankingValuesMonsters(
-                $value->getId(), 
-                $value->getAwake(), 
-                $value->getIdElementType()->getName(), 
-                $value->getType(), 
-                $value->getMonster(), 
-                $value->getIdPreferedStats()->getName(),
-                number_format($rankFinal, 19, ',', ' ')
-            );
+        if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && !empty($filterSubStatFour) ) {
+            // dump('tu passes ici4');
         }
     }
 
     /**
-     * Undocumented function
+     * real Ranking by filters tri DESC
+     */
+    public function sortDescRanking($rankFinal, $value)
+    {
+        return $this->getTmpRankingValuesMonsters(
+            $value->getId(), 
+            $value->getAwake(), 
+            $value->getIdElementType()->getName(), 
+            $value->getType(), 
+            $value->getMonster(), 
+            $value->getIdPreferedStats()->getName(),
+            number_format($rankFinal['ranking'], 19, ',', ' ')
+        );
+    }
+
+    /**
      *
      * @param int $id
      * @param string $awake
@@ -91,6 +99,7 @@ class RankingManager
      */
     public function getTmpRankingValuesMonsters($id, $awake, $elementName, $type, $family, $preferedStatName, $rank)
     {
+
         $this->tmpRankingValuesMonsters[] = [
             "id" => $id,
             "awake" => $awake,
@@ -100,10 +109,13 @@ class RankingManager
             "prefered_flat_stats" => $preferedStatName,
             "ranking" => $rank
         ];
-        
-        usort($this->tmpRankingValuesMonsters, array($this, 'fonctionComparaison'));
 
-        return $this->tmpRankingValuesMonsters;
+        if(!empty($this->tmpRankingValuesMonsters)) {
+            
+            usort($this->tmpRankingValuesMonsters, array($this, 'fonctionComparaison'));
+
+            return $this->tmpRankingValuesMonsters;
+        }
     }
 
     /**
@@ -111,6 +123,8 @@ class RankingManager
      */
     public function fonctionComparaison($a, $b) 
     {
-        return $a['ranking'] < $b['ranking'];
+        if($a['ranking'] != $b['ranking']) {
+            return $a['ranking'] < $b['ranking'];
+        }
     }
 }

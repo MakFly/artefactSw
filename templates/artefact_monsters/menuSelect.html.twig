@@ -12,6 +12,22 @@ $(document).ready(function(){
 	var selectFormsubStatsType4 = "";
 	var currentRequest = null;
 
+	$('.formsubStatsType2').attr('disabled', 'disabled');
+	$('.formsubStatsType3').attr('disabled', 'disabled');
+	$('.formsubStatsType4').attr('disabled', 'disabled');
+
+	$('.formsubStatsType1').on('change', function() {
+		$('.formsubStatsType2').removeAttr('disabled');
+	})
+
+	$('.formsubStatsType2').on('change', function() {
+		$('.formsubStatsType3').removeAttr('disabled');
+	})
+
+	$('.formsubStatsType3').on('change', function() {
+		$('.formsubStatsType4').removeAttr('disabled');
+	})
+
 	$('#element_type_form_name, #flat_stats_name, .formsubStatsType1, .formsubStatsType2, .formsubStatsType3, .formsubStatsType4').on('change', function(){
 		selectElement_type_form_name    = $('#element_type_form_name').val();
 		selectFlatType                  = $('#flat_stats_name').val();
@@ -20,6 +36,7 @@ $(document).ready(function(){
 		selectFormsubStatsType3         = $('.formsubStatsType3 ').val();
 		selectFormsubStatsType4         = $('.formsubStatsType4 ').val();
         
+		
 		currentRequest = $.ajax({
 			url: '{{ path('ajax_artefact_action') }}',
 			type: "POST",

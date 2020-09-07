@@ -187,9 +187,114 @@ class RankingAllSkillsManager
         return $rankingChangeSubStatTwo;
     }
 
-    public function filterThree()
+    public function filterThree($skills, $value, $filterSubStatThree)
     {
+        $rankingChangeSubStatThree = [];
 
+        switch($filterSubStatThree) {
+            case 1:
+                if ($skills->getSkill1critdmgmorepourcent() == 2) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill1critdmgmorepourcent() == 1) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 1 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill1critdmgmorepourcent() == 0) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 0.5 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                break;
+            case 2:
+                if ($skills->getSkill2critdmgmorepourcent() == 2) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill2critdmgmorepourcent() == 1) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 1 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill2critdmgmorepourcent() == 0) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 0.5 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                break;
+            case 3:
+                if ($skills->getSkill3critdmgmorepourcent() == 2) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill3critdmgmorepourcent() == 1) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 1 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill3critdmgmorepourcent() == 0) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 0.5 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                break;
+            case 4:
+                if ($skills->getSkill4critdmgmorepourcent() == 2) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill4critdmgmorepourcent() == 1) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 1 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill4critdmgmorepourcent() == 0) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 0.5 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                break;
+            case 5:
+                if ($skills->getSkill1recoverymorepourcent() == 2) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill1recoverymorepourcent() == 1) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 1 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                if ($skills->getSkill1recoverymorepourcent() == 0) {
+                    $rankingChangeSubStatThree = [
+                        "id" => $value->getId(),
+                        "ranking" => 0.5 + floatval(str_replace(",", ".", $value->getRanking()))
+                    ];
+                }
+                break;
+        }
+
+        return $rankingChangeSubStatThree;
     }
 
     public function filterFour()
