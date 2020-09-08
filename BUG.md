@@ -8,4 +8,6 @@ BUG =>
 => problème au niveau des conditions :
 vérifier lors de la séléction qu'elle filtre est bien sélectionné. Par ailleurs exceptition si le filtre1 n'est pas sélectionné en amont. ( => enabled les champs si le filtre 1 est choisie )
 
-=> revoir le ranking
+[RANKING]
+le système est en place reste une condition à rajouter + à mettre tous les filtres avec les valeurs correspondante au getter dans les fonction "filters"
+rajouter le off select option quand on le met à vide

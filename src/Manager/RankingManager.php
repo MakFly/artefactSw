@@ -29,21 +29,37 @@ class RankingManager
      */
     public function rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {   
-        $rankingChangeOne = $this->rankingAllSkillsManager->filterOne($skills, $value, $filterSubStatOne);
-        $rankingChangeTwo = $this->rankingAllSkillsManager->filterTwo($skills, $value, $filterSubStatTwo);
-        $rankingChangeThree = $this->rankingAllSkillsManager->filterThree($skills, $value, $filterSubStatThree);
+        $rankingChangeOne = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatOne);
+        $rankingChangeTwo = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatTwo);
+        $rankingChangeThree = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatThree);
+        $rankingChangeFour = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatFour);
 
         if(!empty($filterSubStatOne) && empty($filterSubStatTwo) ) {
-            return $this->sortDescRanking($rankingChangeOne, $value);
+            $tmpRank = [];
+
+            foreach($rankingChangeOne as $idRank => $rankingOne){
+                $rank = $rankingOne['ranking'];
+                $tmpRank = [
+                    "id" => $rankingOne['id'],
+                    "ranking" => $rank
+                ];
+            }
+
+            return $this->sortDescRanking($tmpRank, $value);
         }
 
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && empty($filterSubStatThree) ) {
+            
             $tmpRank = [];
 
-            if($rankingChangeOne['ranking'] != $rankingChangeTwo['ranking']) {
-                $tmpRank = $rankingChangeTwo['ranking'];
-            } else {
-                $tmpRank = $rankingChangeOne['ranking'];
+            foreach($rankingChangeOne as $idRank => $rankingOne){
+                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
+                    $rank = ($rankingOne['ranking'] + $rankingTwo['ranking']);
+                    $tmpRank = [
+                        "id" => $rankingOne['id'],
+                        "ranking" => $rank
+                    ];
+                }
             }
 
             return $this->sortDescRanking($tmpRank, $value);
@@ -52,21 +68,40 @@ class RankingManager
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && empty($filterSubStatFour)) {
             
             $tmpRank = [];
-            if($rankingChangeOne['ranking'] == $rankingChangeTwo['ranking']) {
-                $tmpRank = array_merge($rankingChangeOne, $rankingChangeTwo);
+
+            foreach($rankingChangeOne as $idRank => $rankingOne){
+                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
+                    foreach($rankingChangeThree as $idThree => $rankingThree){
+                        $rank = ($rankingOne['ranking'] + $rankingTwo['ranking'] + $rankingThree['ranking']);
+                        $tmpRank = [
+                            "id" => $rankingOne['id'],
+                            "ranking" => $rank
+                        ];
+                    }
+                }
             }
-            if($rankingChangeOne['ranking'] == $rankingChangeThree['ranking']) {
-                $tmpRank = array_merge($rankingChangeOne, $rankingChangeThree);
-            }
-            if($rankingChangeTwo['ranking'] == $rankingChangeThree['ranking']) {
-                $tmpRank = array_merge($rankingChangeTwo, $rankingChangeThree);
-            }
-           
+
             return $this->sortDescRanking($tmpRank, $value);
         }
 
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && !empty($filterSubStatFour) ) {
-            // dump('tu passes ici4');
+            
+            $tmpRank = [];
+            foreach($rankingChangeOne as $idRank => $rankingOne){
+                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
+                    foreach($rankingChangeThree as $idThree => $rankingThree){
+                        foreach($rankingChangeFour as $idFour => $rankingFour){
+                            $rank = ($rankingOne['ranking'] + $rankingTwo['ranking'] + $rankingThree['ranking'] + $rankingFour['ranking']);
+                            $tmpRank = [
+                                "id" => $rankingOne['id'],
+                                "ranking" => $rank
+                            ];
+                        }    
+                    }
+                }
+            }
+           
+            return $this->sortDescRanking($tmpRank, $value);
         }
     }
 
@@ -111,20 +146,21 @@ class RankingManager
         ];
 
         if(!empty($this->tmpRankingValuesMonsters)) {
-            
-            usort($this->tmpRankingValuesMonsters, array($this, 'fonctionComparaison'));
-
-            return $this->tmpRankingValuesMonsters;
+            usort($this->tmpRankingValuesMonsters, array($this, 'fonctionComparaisonRanking'));
         }
+
+        return $this->tmpRankingValuesMonsters;
     }
 
     /**
      * tri par ordre décroissant
      */
-    public function fonctionComparaison($a, $b) 
+    public function fonctionComparaisonRanking($a, $b) 
     {
         if($a['ranking'] != $b['ranking']) {
             return $a['ranking'] < $b['ranking'];
         }
+
+        return $a['family'] > $b['family'];
     }
 }

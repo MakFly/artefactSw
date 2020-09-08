@@ -55,8 +55,7 @@ class MonstersRepository extends ServiceEntityRepository
             ->andWhere("m.idFlatStats = :idFlatStats")
             ->setParameter('idElementType', $idElements)
             ->setParameter('idFlatStats', $idFlatStats)
-            ->setMaxResults(15)
-            ->orderBy("m.ranking", "DESC")
+            // ->setMaxResults(15)
             ->getQuery()
             ->execute();
     }
