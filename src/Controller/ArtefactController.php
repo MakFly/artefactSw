@@ -6,7 +6,7 @@ use App\Entity\Monsters;
 use App\Form\MonstersType;
 use App\Manager\ManagerMonstersByArtefacts;
 use App\Repository\SubstatsArtefactByMonstersRepository;
-use App\Services\MontersByArtefactsSubsServices;
+use App\Manager\MontersByArtefactsSubsServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Manager;
 
 use App\Manager\ManagerMonstersByArtefacts;
 use Symfony\Component\HttpFoundation\Response;

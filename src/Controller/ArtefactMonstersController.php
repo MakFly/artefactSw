@@ -11,7 +11,7 @@ use App\Form\SubStatArtefactType;
 use App\Manager\RankingAllSkillsManager;
 use App\Manager\RankingManager;
 use App\Repository\MonstersRepository;
-use App\Service\RankingService;
+use App\Manager\RankingService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,9 +60,9 @@ class ArtefactMonstersController extends AbstractController
     }
 
     /**
-    * @Route("/ajax_artefact", name="ajax_artefact_action")
+    * @Route("/ajaxArtefactAction", name="ajax_artefact_action")
     */
-    public function ajaxArtefactAction(Request $request, TranslatorInterface $translatorInterface, MonstersRepository $monstersRepository)
+    public function ajaxArtefactAction(Request $request, MonstersRepository $monstersRepository)
     {
          /************* Update VERSION 0.3 *****************/
 
