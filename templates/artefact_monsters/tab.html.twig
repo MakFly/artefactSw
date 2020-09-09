@@ -5,7 +5,17 @@
 {% block body %}
 
 <div class="row">
-    <table id="tabMonsterAjax" class="table">
+    <table id="tabMonsterAjax" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Awake</th>
+                <th>{{ 'element'|trans}} </th>
+                <th>{{ 'TypeMonsters'|trans}}</th>
+                <th>{{ 'family'|trans}}</th>
+                <th>{{ 'preferedFlatStat'|trans}}</th>
+            </tr>
+        </thead>
     </table>
 </div>
 {% endblock %}

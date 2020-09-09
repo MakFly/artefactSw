@@ -40,8 +40,16 @@ class ArtefactMonstersController extends AbstractController
         $formsubStatsType3 = $this->createForm(SubStatArtefactType::class, $subStatsType);
         $formsubStatsType4 = $this->createForm(SubStatArtefactType::class, $subStatsType);
 
+        $locale = "";
+        if($request->getLocale() == "fr") {
+            $locale = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json";
+        } else {
+            $locale = "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/English.json";
+        }
+
         return $this->render('artefact_monsters/index.html.twig', 
             [
+                'locale' => $locale,
                 'formElementType' => $formElementType->createView(),
                 'formFlatStat' => $formFlatStatType->createView(),
                 'formsubStatsType' => $formsubStatsType1->createView(),
@@ -62,6 +70,9 @@ class ArtefactMonstersController extends AbstractController
         $rankingAllSkillsManager = new RankingAllSkillsManager();
         $managerRanking = new RankingManager($rankingAllSkillsManager);
         $rankingMonstersSubStats = new RankingService($managerRanking);
+
+       
+
 
 
         /* on récupère la valeur envoyée */
@@ -86,17 +97,18 @@ class ArtefactMonstersController extends AbstractController
             /** calcul du ranking */
             $rankings = $rankingMonstersSubStats->rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
 
-            
+            $i = 1;
             if(!empty($rankings)) {
                 foreach($rankings as $monstersRanking){
                     $info[] = [
-                        "id" => $monstersRanking['id'],
+                        "id" => $i,
                         "awake" => $monstersRanking['awake'],
                         "element" => $monstersRanking['element'],
                         "type" => $monstersRanking['type'],
                         "family" => $monstersRanking['family'],
                         "prefered_flat_stats" => $monstersRanking['prefered_flat_stats'],
                     ];       
+                    ++$i;
                 }                   
             }
 

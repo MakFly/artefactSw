@@ -4,6 +4,15 @@
 <script>
 $(document).ready(function(){
 
+	locale = $('#locale').val();
+	$('#tabMonsterAjax').dataTable( {
+		"aaSorting": [],
+		"language": {
+            "url": locale
+        }
+	} );
+	
+
 	var selectElement_type_form_name = "";
 	var selectFlatType = "";
 	var selectFormsubStatsType1 = "";
@@ -57,7 +66,10 @@ $(document).ready(function(){
 					}
 				},
 				success: function (data) {
-					let tabMonsters = "<tr><th>Id</th><th>Name</th><th>Element</th><th>Type</th><th>Family</th><th>Prefered Flat Stats</th></tr>";
+					
+					myJsonData = data;
+        			populateDataTable(myJsonData);
+					/*let tabMonsters = "<tr><th>Id</th><th>Name</th><th>Element</th><th>Type</th><th>Family</th><th>Prefered Flat Stats</th></tr>";
 					data.info.forEach((datum) => {
 						tabMonsters += 
 						"<tr><td>" + 
@@ -68,10 +80,29 @@ $(document).ready(function(){
 							datum.family + "</td><td>" + 
 							datum.prefered_flat_stats + "</td></tr>";
 					})
-					$('#tabMonsterAjax').html(tabMonsters);
+					$('#tabMonsterAjax').html(tabMonsters);*/
 				}	
 		})
 	});
+
+	// populate the data table with JSON data
+	function populateDataTable(data) {
+		
+		// clear the table before populating it with more data
+		$("#tabMonsterAjax").DataTable().clear();
+		data.info.forEach((datum) => {
+			$('#tabMonsterAjax').dataTable().fnAddData( [
+				datum.id,
+				datum.awake,
+				datum.element,
+				datum.type,
+				datum.family,
+				datum.prefered_flat_stats,
+			]);
+		})
+	}
+
+
 });
 </script>
 {% endblock %}
@@ -80,6 +111,9 @@ $(document).ready(function(){
 <div class="row">
     <div class="card card-body">
         <form>
+
+			<input type="hidden" name="locale" id="locale" value="{{ locale }}">
+
             {# element #}
             <div class="form-group">
                 <label for="labelElement">{{ 'element'|trans}}</label>

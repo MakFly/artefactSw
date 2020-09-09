@@ -20,19 +20,19 @@ class RankingManager
 
     public function verifRankingMonstersBySubStat($value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour) 
     {
-        $skills = $value->getIdSubstatsArtefactByMonsters();
-        return $this->rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
+        $skillsSubStatsArtefacts = $value->getIdSubstatsArtefactByMonsters();
+        return $this->rankings($skillsSubStatsArtefacts, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
     }
 
     /**
      * Test rankings
      */
-    public function rankings($skills, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
+    public function rankings($skillsSubStatsArtefacts, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {   
-        $rankingChangeOne = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatOne);
-        $rankingChangeTwo = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatTwo);
-        $rankingChangeThree = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatThree);
-        $rankingChangeFour = $this->rankingAllSkillsManager->filtersSubStats($skills, $value, $filterSubStatFour);
+        $rankingChangeOne = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatOne);
+        $rankingChangeTwo = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatTwo);
+        $rankingChangeThree = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatThree);
+        $rankingChangeFour = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatFour);
 
         if(!empty($filterSubStatOne) && empty($filterSubStatTwo) ) {
             $tmpRank = [];
