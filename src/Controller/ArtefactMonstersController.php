@@ -71,9 +71,6 @@ class ArtefactMonstersController extends AbstractController
         $managerRanking = new RankingManager($rankingAllSkillsManager);
         $rankingMonstersSubStats = new RankingService($managerRanking);
 
-       
-
-
 
         /* on récupère la valeur envoyée */
         $selectElement_type_form_name = $request->request->get('selectElement_type_form_name');
