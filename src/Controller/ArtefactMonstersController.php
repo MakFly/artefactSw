@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\ElementType;
 use App\Entity\FlatStats;
-use App\Entity\Ranking;
 use App\Entity\SubstatArtefact;
 use App\Form\ElementTypeForm;
 use App\Form\FlatStatsType;

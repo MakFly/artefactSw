@@ -2,14 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\ElementType;
-use App\Entity\FlatStats;
 use App\Entity\Monsters;
-use App\Entity\SubstatArtefact;
-use App\Form\ElementTypeForm;
-use App\Form\FlatStatsType;
 use App\Form\MonstersType;
-use App\Form\SubStatArtefactType;
 use App\Manager\ManagerMonstersByArtefacts;
 use App\Repository\SubstatsArtefactByMonstersRepository;
 use App\Services\MontersByArtefactsSubsServices;
