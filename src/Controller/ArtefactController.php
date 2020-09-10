@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Monsters;
 use App\Form\MonstersType;
-use App\Manager\ManagerArtefacts;
+use App\Manager\ManagerMonstersByArtefacts;
 use App\Repository\SubstatsArtefactByMonstersRepository;
-use App\Services\MontersByArtefactsSubsServices;
+use App\Manager\MontersByArtefactsSubsServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,20 +14,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ArtefactController extends AbstractController
 {
-    /**
-     * @Route({
-     *  "fr": "/artefactByMonster",
-     *  "en": "/artefactByMonster"
-     * }, name="artefactByMonster")
-     */
-    public function indexArtefactByMonsters(TranslatorInterface $translator, Request $request)
-    {
-
-        return $this->render('artefactByMonsters/index.html.twig', 
-            []
-        );
-    }
-
     /**
      * @Route({
      *  "fr": "/monstersByArtefact",
@@ -48,9 +34,9 @@ class ArtefactController extends AbstractController
     }
 
     /**
-    * @Route("/ajax", name="ajax_monsters_action")
+    * @Route("/ajax_monsters", name="ajax_monsters_action")
     */
-    public function ajaxAction(Request $request, TranslatorInterface $translatorInterface, SubstatsArtefactByMonstersRepository $substatsArtefactByMonstersRepository)
+    public function ajaxMonsterAction(Request $request, TranslatorInterface $translatorInterface, SubstatsArtefactByMonstersRepository $substatsArtefactByMonstersRepository)
     {
         /* on récupère la valeur envoyée */
         $idMonsters = $request->request->get('idMonsters');
@@ -58,10 +44,11 @@ class ArtefactController extends AbstractController
         /* doctrine : on récupère la data en bdd pour la comparé avec l'option value envoyé  */
         $resultArtefactByMonsters = $substatsArtefactByMonstersRepository->findEntitiesByIdMonsters($idMonsters);
         
-        $managerArtefacts = new ManagerArtefacts();
-        $monsters = new MontersByArtefactsSubsServices($managerArtefacts, $translatorInterface);
+        $managerMonstersByArtefacts = new ManagerMonstersByArtefacts();
+        $monsters = new MontersByArtefactsSubsServices($managerMonstersByArtefacts, $translatorInterface);
         $arraySubsStatsByMonster = $monsters->showArtefactsByMonsters($resultArtefactByMonsters);
 
+        /** Tableau des resultats des subs_stats d'artefact par monstre */
         $dataArtefactByMonsters = [];
         foreach($arraySubsStatsByMonster as $key => $value){
             $dataArtefactByMonsters[$key] = $value;

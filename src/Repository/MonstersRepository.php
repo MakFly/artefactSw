@@ -19,32 +19,33 @@ class MonstersRepository extends ServiceEntityRepository
         parent::__construct($registry, Monsters::class);
     }
 
-    // /**
-    //  * @return Monsters[] Returns an array of Monsters objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function searchMonstersByTypeOfMonsters($idFlatsStats)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->leftJoin('m.idFlatStats', 'f_s')
+            ->where("m.idFlatStats = :idFlatStats")
+            ->setParameter('idFlatStats', $idFlatsStats)
             ->getQuery()
-            ->getResult()
-        ;
+            ->execute();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Monsters
+    /**
+     * Undocumented function
+     *
+     * @param int $idElements
+     * @param int $idFlatsStats
+     * @return Array
+     */
+    public function searchMonstersByFilters($idElements, $idFlatStats)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
+            ->leftJoin('m.idElementType', 'e_t')
+            ->leftJoin('m.idFlatStats', 'f_s')
+            ->where("m.idElementType = :idElementType")
+            ->andWhere("m.idFlatStats = :idFlatStats")
+            ->setParameter('idElementType', $idElements)
+            ->setParameter('idFlatStats', $idFlatStats)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->execute();
     }
-    */
 }

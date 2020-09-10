@@ -3,68 +3,80 @@ navTitle: Summoners War Artefact
 artefact: Artefact par monstres
 artefactByMonsters: Monstres par artefact
 element: Éléments
-flatStat: Flat Stat
+TypeMonsters: Type de Monstres
 name: Nom
 stars: Étoiles
 family: Famille
 preferedFlatStat: Flat Stat Préféré
 
 #SubStats
+subsStat1: Sous-Stat 1
+subsStat2: Sous-Stat 2
+subsStat3: Sous-Stat 3
+subsStat4: Sous-Stat 4
+
+#ElementTypeForm
+FIRE: Feu
+WATER: Eau
+WIND: Vent
+LIGHT: Lumière
+DARK: Ténèbre
+
 #critDmg
-Skill 1 CRIT DMG +%: Dégâts des Critiques Compétence 1 CRIT DMG +%
-Skill 2 CRIT DMG +%: Dégâts des Critiques Compétence 2 CRIT DMG +%
-Skill 3 CRIT DMG +%: Dégâts des Critiques Compétence 3 CRIT DMG +%
-Skill 4 CRIT DMG +%: Dégâts des Critiques Compétence 4 CRIT DMG +%
+Skill 1 CRIT DMG +%: Dégâts CRIT [compétence 1] +x%
+Skill 2 CRIT DMG +%: Dégâts CRIT [compétence 2] +x%
+Skill 3 CRIT DMG +%: Dégâts CRIT [compétence 3] +x%
+Skill 4 CRIT DMG +%: Dégâts CRIT [compétence 4] +x%
 
 #recovery
-Skill 1 Recovery +%: Récupération Compétence 1 +%
-Skill 2 Recovery +%: Récupération Compétence 2 +%
-Skill 3 Recovery +%: Récupération Compétence 3 +%
+Skill 1 Recovery +%: Récupération [compétence 1] +x%
+Skill 2 Recovery +%: Récupération [compétence 2] +x%
+Skill 3 Recovery +%: Récupération [compétence 3] +x%
 
 #accuracy
-Skill 1 Accuracy +%: Précision Compétence 1 +%
-Skill 2 Accuracy +%: Précision Compétence 2 +%
-Skill 3 Accuracy +%: Précision Compétence 3 +%
+Skill 1 Accuracy +%: Précision [compétence 1] +x%
+Skill 2 Accuracy +%: Précision [compétence 2] +x%
+Skill 3 Accuracy +%: Précision [compétence 3] +x%
 
 #DMG by elements
-Damage Dealt on Fire +%: Dégâts infligés au Feu +%
-Damage Dealt on Water +%: Dégâts infligés à l'Eau +%
-Damage Dealt on Wind +%: Dégâts infligés au Vent +%
-Damage Dealt on Light +%: Dégâts infligés à la lumière +%
-Damage Dealt on Dark +%: Dégâts infligés aux Ténèbres +%
+Damage Dealt on Fire +%: Dégâts infligés au Feu +x%
+Damage Dealt on Water +%: Dégâts infligés à l'Eau +x%
+Damage Dealt on Wind +%: Dégâts infligés au Vent +x%
+Damage Dealt on Light +%: Dégâts infligés à la lumière +x%
+Damage Dealt on Dark +%: Dégâts infligés aux Ténèbres +x%
 
 #DMG received
-Damage Received from Fire -%: Dégâts reçus du Feu -%
-Damage Received from Water -%: Dégâts reçus de l'Eau -%
-Damage Received from Wind -%: Dégâts reçus du Vent -%
-Damage Received from Light -%: Dégâts reçus de la Lumière -%
-Damage Received from Dark -%: Dégâts reçus des Ténèbres -%
+Damage Received from Fire -%: Dégâts reçus du Feu -x%
+Damage Received from Water -%: Dégâts reçus de l'Eau -x%
+Damage Received from Wind -%: Dégâts reçus du Vent -x%
+Damage Received from Light -%: Dégâts reçus de la Lumière -x%
+Damage Received from Dark -%: Dégâts reçus des Ténèbres -x%
 
 #OTHER
-ATK+ Proportional to Lost HP up to %: ATQ Prop. des PV perdus jusqu'à +%
-DEF+ Proportional to Lost HP up to %: DEF Prop. des PV perdus jusqu'à +%
-SPD+ Proportional to Lost HP up to %: SPD Prop. des PV perdus jusqu'à +%
+ATK+ Proportional to Lost HP up to %: ATQ Prop. des PV perdus jusqu'à +x%
+DEF+ Proportional to Lost HP up to %: DEF Prop. des PV perdus jusqu'à +x%
+SPD+ Proportional to Lost HP up to %: SPD Prop. des PV perdus jusqu'à +x%
 
-ATK Increasing Effect +%: Effet renforcement ATQ +%
-DEF Increasing Effect +%: Effet renforcement DEF +%
-SPD Increasing Effect +%: Effet renforcement SPD +%
+ATK Increasing Effect +%: Effet renforcement ATQ +x%
+DEF Increasing Effect +%: Effet renforcement DEF +x%
+SPD Increasing Effect +%: Effet renforcement SPD +x%
 
-CRIT Rate Increasing Effect +%: Effet augmentation taux critique +%
-Damage Dealt by Counterattack +%: Dégâts de aontre-attaque +%
-Damage Dealt by Attacking Together +%: Dégâts d'attaque aonjointe +%
+CRIT Rate Increasing Effect +%: Effet augmentation taux critique +x%
+Damage Dealt by Counterattack +%: Dégâts de aontre-attaque +x%
+Damage Dealt by Attacking Together +%: Dégâts d'attaque conjointe +x%
 
-Bomb Damage +%: Dégats De Bombe +%
-Life Drain +%: Drain de vie +%
-HP when Revived +%: Pv Après Résurrection +%
-Attack Bar when Revived +%: Jauge D'Attaque Après Resurrection +%
-Damage Dealt by Reflect DMG +%: Dégats Reçu Par Réflexion +%
+Bomb Damage +%: Dégats De Bombe +x%
+Life Drain +%: Drain de vie +x%
+HP when Revived +%: Pv Après Résurrection +x%
+Attack Bar when Revived +%: Jauge D'Attaque Après Resurrection +x%
+Damage Dealt by Reflect DMG +%: Dégats Reçu Par Réflexion +x%
 
 Additional Damage by % of HP: Dégâts supp. de x% des PV 
 Additional Damage by % of ATK: Dégâts supp. de x% de l'ATQ
 Additional Damage by % of DEF: Dégâts supp. de x% de la DEF
 Additional Damage by % of SPD: Dégâts supp. de x% de la SPD
 
-Damage Received Under Inability Effects -%: Dégâts Reçus sous effet d'incapacité -%
-SPD Under Inability Effects +%:  VIT sous effet d'incapacité +%
-CRIT DMG Received -%: Dégâts des critiques reçu -%
-Crushing Hit DMG +%: Dégats des coups devastateurs +%
+Damage Received Under Inability Effects -%: Dégâts Reçus sous effet d'incapacité -x%
+SPD Under Inability Effects +%:  VIT sous effet d'incapacité +x%
+CRIT DMG Received -%: Dégâts des critiques reçu -x%
+Crushing Hit DMG +%: Dégats des coups devastateurs +x%

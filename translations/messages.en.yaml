@@ -3,13 +3,25 @@ navTitle: Summoners War Artefact
 artefact: Artefact by monsters
 artefactByMonsters: Monsters by Artefact
 element: Elements
-flatStat: Flat Stat
+TypeMonsters: Type de Monstres
 name: Name
 stars: Stars
 family: Family
 preferedFlatStat: Prefered Flat Stat
 
 #SubStats
+subsStat1: Stat 1
+subsStat2: Stat 2
+subsStat3: Stat 3
+subsStat4: Stat 4
+
+#ElementTypeForm
+FIRE: Fire
+WATER: Water
+WIND: Wind
+LIGHT: Light
+DARK: Dark
+
 #critDmg
 Skill 1 CRIT DMG +%: Skill 1 CRIT DMG +%
 Skill 2 CRIT DMG +%: Skill 2 CRIT DMG +%

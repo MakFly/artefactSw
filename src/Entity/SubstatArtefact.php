@@ -29,4 +29,14 @@ class SubstatArtefact
     private $name;
 
 
+
+    /**
+     * Get the value of name
+     *
+     * @return  string
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
 }

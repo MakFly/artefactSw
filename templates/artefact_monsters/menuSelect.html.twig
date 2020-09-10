@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+<script>
+$(document).ready(function(){
+
+	locale = $('#locale').val();
+	$('#tabMonsterAjax').dataTable( {
+		"aaSorting": [],
+		"language": {
+            "url": locale
+        },
+		"columnDefs": [
+			{ "width": "20%", "targets": 0 },
+			{ "width": "50%", "targets": 1 },
+			{ "width": "50%", "targets": 2 },
+			{ "width": "50%", "targets": 3 },
+			{ "width": "50%", "targets": 4 },
+			{ "width": "50%", "targets": 5 },
+		]
+	} );
+	
+
+	var selectElement_type_form_name = "";
+	var selectFlatType = "";
+	var selectFormsubStatsType1 = "";
+	var selectFormsubStatsType2 = "";
+	var selectFormsubStatsType3 = "";
+	var selectFormsubStatsType4 = "";
+	var currentRequest = null;
+
+	$('.formsubStatsType1').attr('disabled', 'disabled');
+	$('.formsubStatsType2').attr('disabled', 'disabled');
+	$('.formsubStatsType3').attr('disabled', 'disabled');
+	$('.formsubStatsType4').attr('disabled', 'disabled');
+
+	$('#flat_stats_name').on('change', function() {
+		$('.formsubStatsType1').removeAttr('disabled');
+	})
+
+	$('.formsubStatsType1').on('change', function() {
+		$('.formsubStatsType2').removeAttr('disabled');
+	})
+
+	$('.formsubStatsType2').on('change', function() {
+		$('.formsubStatsType3').removeAttr('disabled');
+	})
+
+	$('.formsubStatsType3').on('change', function() {
+		$('.formsubStatsType4').removeAttr('disabled');
+	})
+
+	$('#element_type_form_name, #flat_stats_name, .formsubStatsType1, .formsubStatsType2, .formsubStatsType3, .formsubStatsType4').on('change', function(){
+		selectElement_type_form_name    = $('#element_type_form_name').val();
+		selectFlatType                  = $('#flat_stats_name').val();
+		selectFormsubStatsType1         = $('.formsubStatsType1 ').val();
+		selectFormsubStatsType2         = $('.formsubStatsType2 ').val();
+		selectFormsubStatsType3         = $('.formsubStatsType3 ').val();
+		selectFormsubStatsType4         = $('.formsubStatsType4 ').val();
+        
+		
+		currentRequest = $.ajax({
+			url: '{{ path('artefact_monsters_action') }}',
+			type: "POST",
+			dataType: "json",
+				data: {
+					"selectElement_type_form_name": selectElement_type_form_name,
+					"selectFlatType": selectFlatType,
+					"selectFormsubStatsType1": selectFormsubStatsType1,
+					"selectFormsubStatsType2": selectFormsubStatsType2,
+					"selectFormsubStatsType3": selectFormsubStatsType3,
+					"selectFormsubStatsType4": selectFormsubStatsType4,
+				},
+				async: true,
+				beforeSend : function()  
+				{   
+					if(currentRequest != null) {
+						currentRequest.abort();
+					}
+					$("#tabMonsterAjax").DataTable().clear();
+				},
+				success: function () {
+				}	
+		}).done(function(data) {
+			myJsonData = data;
+			populateDataTable(myJsonData);
+		})
+	});
+
+	// populate the data table with JSON data
+	function populateDataTable(data) {
+		data.info.forEach((datum) => {
+			$('#tabMonsterAjax').dataTable().fnAddData( [
+				datum.id,
+				datum.awake,
+				datum.element,
+				datum.type,
+				datum.family,
+				datum.prefered_flat_stats,
+				datum.rank,
+			]);
+		})
+	}
+
+
+});
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="card card-body">
+        <form>
+
+			<input type="hidden" name="locale" id="locale" value="{{ locale }}">
+
+            {# element #}
+            <div class="form-group">
+                <label for="labelElement">{{ 'element'|trans}}</label>
+                {{ form_widget(formElementType.name) }}
+            </div>
+            {# Flat stat #}
+            <div class="form-group">
+                <label for="labelFlatStats">{{ 'TypeMonsters'|trans}}</label>
+                {{ form_widget(formFlatStat.name) }}
+            </div>
+            {# substat 1 #}
+            <div class="form-group">
+                <label for="labelSubStat1">{{ 'subsStat1'|trans}}</label>
+                {{ form_widget(formsubStatsType.name, { 'attr': {'class': 'formsubStatsType1'} }) }}
+            </div>
+            {# substat 2 #}
+            <div class="form-group">
+                <label for="labelSubStat2">{{ 'subsStat2'|trans}}</label>
+                {{ form_widget(formsubStatsType2.name, { 'attr': {'class': 'formsubStatsType2'} }) }}
+            </div>
+            {# substat 3 #}
+            <div class="form-group">
+                <label for="labelSubStat3">{{ 'subsStat3'|trans}}</label>
+                {{ form_widget(formsubStatsType3.name, { 'attr': {'class': 'formsubStatsType3'} }) }}
+            </div>
+            {# substat 4 #}
+            <div class="form-group">
+                <label for="labelSubStat4">{{ 'subsStat4'|trans}}</label>
+                {{ form_widget(formsubStatsType4.name, { 'attr': {'class': 'formsubStatsType4'} }) }}
+            </div>
+        </form>   
+    </div>
+</div>
+{% endblock %}
