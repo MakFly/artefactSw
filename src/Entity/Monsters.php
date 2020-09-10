@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Monsters
- *
+ * 
+ * @ApiResource(
+ *     collectionOperations={"get"}
+ * )
  * @ORM\Table(name="monsters", uniqueConstraints={@ORM\UniqueConstraint(name="id_monsters", columns={"id"})}, indexes={@ORM\Index(name="fk_id_element_type", columns={"id_element_type"}), @ORM\Index(name="fk_id_flat_stats", columns={"id_flat_stats"}), @ORM\Index(name="fk_id_subs_stats_artefact_by_monsters", columns={"id_substats_artefact_by_monsters"}), @ORM\Index(name="id_prefered_stats", columns={"id_prefered_stats"})})
  * @ORM\Entity
  */

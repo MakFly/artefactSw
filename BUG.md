@@ -2,12 +2,10 @@ BUG =>
     - revoir le selector sur la partie "Monstre par artefact" bug au niveau de la "re-selection"
     - traduction champs select option
 
-
---------------------------------------
-08/09/2020
-=> problème au niveau des conditions :
-vérifier lors de la séléction qu'elle filtre est bien sélectionné. Par ailleurs exceptition si le filtre1 n'est pas sélectionné en amont. ( => enabled les champs si le filtre 1 est choisie )
-
 [RANKING]
-le système est en place reste une condition à rajouter + à mettre tous les filtres avec les valeurs correspondante au getter dans les fonction "filters"
 rajouter le off select option quand on le met à vide
+
+[FILTRES]
+bug sur le fais qu'il n'y ait pas de traitement quand on sélectionne la deuxieme & troisième options
+
+pouvoir afficher les monstres en selectionnant que les types de monstres
