@@ -12,6 +12,7 @@ use App\Manager\RankingAllSkillsManager;
 use App\Manager\RankingManager;
 use App\Repository\MonstersRepository;
 use App\Manager\RankingService;
+use App\Services\MonstersRankingServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,60 +61,19 @@ class ArtefactMonstersController extends AbstractController
     }
 
     /**
-    * @Route("/ajaxArtefactAction", name="ajax_artefact_action")
+    * @Route("/artefactByMonstersAction", name="artefact_monsters_action", methods={"POST"})
     */
-    public function ajaxArtefactAction(Request $request, MonstersRepository $monstersRepository)
+    public function ajaxArtefactAction(Request $request, MonstersRepository $monstersRepository): Response
     {
-         /************* Update VERSION 0.3 *****************/
+        /************* Update VERSION 0.4 *****************/
 
-        $rankingAllSkillsManager = new RankingAllSkillsManager();
-        $managerRanking = new RankingManager($rankingAllSkillsManager);
-        $rankingMonstersSubStats = new RankingService($managerRanking);
+        $monstersRankingService = new MonstersRankingServices();
 
+        $response = new Response(json_encode(array(
+            'info' => $monstersRankingService->getResponseRanking($request, $monstersRepository)
+        )));
 
-        /* on récupère la valeur envoyée */
-        $selectElement_type_form_name = $request->request->get('selectElement_type_form_name');
-        $selectFlatType = $request->request->get('selectFlatType');
-        $filterSubStatOne = $request->request->get('selectFormsubStatsType1');
-        $filterSubStatTwo = $request->request->get('selectFormsubStatsType2');
-        $filterSubStatThree = $request->request->get('selectFormsubStatsType3');
-        $filterSubStatFour = $request->request->get('selectFormsubStatsType4');
-
-        /* doctrine : on récupère la data en bdd pour la comparé avec l'option value envoyé  */
-        // $result = $ajaxJqueryTrainingRepository->findEntitiesById($selectElementType);
-
-        $info = [];
-        $monsterFilterByTwoParameters = "";
-        $rankings = "";
-        if (!empty($selectElement_type_form_name) && !empty($selectFlatType) && !empty($filterSubStatOne)) {         
-
-            /** search Monster by this two first filters */
-            $monsterFilterByTwoParameters = $monstersRepository->searchMonstersByFilters($selectElement_type_form_name, $selectFlatType);
-            
-            /** calcul du ranking */
-            $rankings = $rankingMonstersSubStats->rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
-
-            $i = 1;
-            if(!empty($rankings)) {
-                foreach($rankings as $monstersRanking){
-                    $info[] = [
-                        "id" => $i,
-                        "awake" => $monstersRanking['awake'],
-                        "element" => $monstersRanking['element'],
-                        "type" => $monstersRanking['type'],
-                        "family" => $monstersRanking['family'],
-                        "prefered_flat_stats" => $monstersRanking['prefered_flat_stats'],
-                    ];       
-                    ++$i;
-                }                   
-            }
-
-            $response = new Response(json_encode(array(
-                'info' => $info
-            )));
-            $response->headers->set('Content-Type', 'application/json');
-    
-            return $response;
-        }
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

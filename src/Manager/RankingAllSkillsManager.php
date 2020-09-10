@@ -10,6 +10,7 @@ class RankingAllSkillsManager
     public function filtersSubStats($skills, $value, $filterSubStats)
     {
         $rankingChangeSubStat = [];
+        $monsterEpic = [295];
 
         switch($filterSubStats) {
             case 1:
@@ -54,10 +55,17 @@ class RankingAllSkillsManager
                 break;
             case 3:
                 if ($skills->getSkill3critdmgmorepourcent() == 2) {
-                    $rankingChangeSubStat[] = [
-                        "id" => $value->getId(),
-                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
-                    ];
+                    if (in_array($value->getId(), $monsterEpic)) {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 100 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    } else {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    }
                 }
                 if ($skills->getSkill3critdmgmorepourcent() == 1) {
                     $rankingChangeSubStat[] = [

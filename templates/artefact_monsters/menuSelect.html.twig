@@ -9,7 +9,15 @@ $(document).ready(function(){
 		"aaSorting": [],
 		"language": {
             "url": locale
-        }
+        },
+		"columnDefs": [
+			{ "width": "20%", "targets": 0 },
+			{ "width": "50%", "targets": 1 },
+			{ "width": "50%", "targets": 2 },
+			{ "width": "50%", "targets": 3 },
+			{ "width": "50%", "targets": 4 },
+			{ "width": "50%", "targets": 5 },
+		]
 	} );
 	
 
@@ -21,9 +29,14 @@ $(document).ready(function(){
 	var selectFormsubStatsType4 = "";
 	var currentRequest = null;
 
+	$('.formsubStatsType1').attr('disabled', 'disabled');
 	$('.formsubStatsType2').attr('disabled', 'disabled');
 	$('.formsubStatsType3').attr('disabled', 'disabled');
 	$('.formsubStatsType4').attr('disabled', 'disabled');
+
+	$('#flat_stats_name').on('change', function() {
+		$('.formsubStatsType1').removeAttr('disabled');
+	})
 
 	$('.formsubStatsType1').on('change', function() {
 		$('.formsubStatsType2').removeAttr('disabled');
@@ -47,7 +60,7 @@ $(document).ready(function(){
         
 		
 		currentRequest = $.ajax({
-			url: '{{ path('ajax_artefact_action') }}',
+			url: '{{ path('artefact_monsters_action') }}',
 			type: "POST",
 			dataType: "json",
 				data: {
@@ -64,32 +77,18 @@ $(document).ready(function(){
 					if(currentRequest != null) {
 						currentRequest.abort();
 					}
+					$("#tabMonsterAjax").DataTable().clear();
 				},
-				success: function (data) {
-					
-					myJsonData = data;
-        			populateDataTable(myJsonData);
-					/*let tabMonsters = "<tr><th>Id</th><th>Name</th><th>Element</th><th>Type</th><th>Family</th><th>Prefered Flat Stats</th></tr>";
-					data.info.forEach((datum) => {
-						tabMonsters += 
-						"<tr><td>" + 
-							datum.id + "</td><td>" + 
-							datum.awake + "</td><td>" +
-							datum.element + "</td><td>" + 
-							datum.type + "</td><td>" + 
-							datum.family + "</td><td>" + 
-							datum.prefered_flat_stats + "</td></tr>";
-					})
-					$('#tabMonsterAjax').html(tabMonsters);*/
+				success: function () {
 				}	
+		}).done(function(data) {
+			myJsonData = data;
+			populateDataTable(myJsonData);
 		})
 	});
 
 	// populate the data table with JSON data
 	function populateDataTable(data) {
-		
-		// clear the table before populating it with more data
-		$("#tabMonsterAjax").DataTable().clear();
 		data.info.forEach((datum) => {
 			$('#tabMonsterAjax').dataTable().fnAddData( [
 				datum.id,
@@ -98,6 +97,7 @@ $(document).ready(function(){
 				datum.type,
 				datum.family,
 				datum.prefered_flat_stats,
+				datum.rank,
 			]);
 		})
 	}
@@ -147,5 +147,4 @@ $(document).ready(function(){
         </form>   
     </div>
 </div>
-
 {% endblock %}

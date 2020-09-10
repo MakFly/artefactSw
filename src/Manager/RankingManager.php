@@ -18,26 +18,33 @@ class RankingManager
         $this->rankingAllSkillsManager = $rankingAllSkillsManager;
     }
 
-    public function verifRankingMonstersBySubStat($value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour) 
+    /**
+     * @param [type] $valuesMonsters
+     * @param [type] $filterSubStatOne
+     * @param [type] $filterSubStatTwo
+     * @param [type] $filterSubStatThree
+     * @param [type] $filterSubStatFour
+     */
+    public function verifRankingMonstersBySubStat($valuesMonsters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour) 
     {
-        $skillsSubStatsArtefacts = $value->getIdSubstatsArtefactByMonsters();
-        return $this->rankings($skillsSubStatsArtefacts, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
+        $skillsSubStatsArtefacts = $valuesMonsters->getIdSubstatsArtefactByMonsters();
+        return $this->rankings($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
     }
 
     /**
      * Test rankings
      */
-    public function rankings($skillsSubStatsArtefacts, $value, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
+    public function rankings($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {   
-        $rankingChangeOne = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatOne);
-        $rankingChangeTwo = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatTwo);
-        $rankingChangeThree = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatThree);
-        $rankingChangeFour = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $value, $filterSubStatFour);
+        $rankingChangeOne = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatOne);
+        $rankingChangeTwo = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatTwo);
+        $rankingChangeThree = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatThree);
+        $rankingChangeFour = $this->rankingAllSkillsManager->filtersSubStats($skillsSubStatsArtefacts, $valuesMonsters, $filterSubStatFour);
 
         if(!empty($filterSubStatOne) && empty($filterSubStatTwo) ) {
             $tmpRank = [];
 
-            foreach($rankingChangeOne as $idRank => $rankingOne){
+            foreach($rankingChangeOne as $rankingOne){
                 $rank = $rankingOne['ranking'];
                 $tmpRank = [
                     "id" => $rankingOne['id'],
@@ -45,15 +52,15 @@ class RankingManager
                 ];
             }
 
-            return $this->sortDescRanking($tmpRank, $value);
+            return $this->sortDescRanking($tmpRank, $valuesMonsters);
         }
 
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && empty($filterSubStatThree) ) {
             
             $tmpRank = [];
 
-            foreach($rankingChangeOne as $idRank => $rankingOne){
-                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
+            foreach($rankingChangeOne as $rankingOne){
+                foreach($rankingChangeTwo as $rankingTwo){
                     $rank = ($rankingOne['ranking'] + $rankingTwo['ranking']);
                     $tmpRank = [
                         "id" => $rankingOne['id'],
@@ -62,16 +69,16 @@ class RankingManager
                 }
             }
 
-            return $this->sortDescRanking($tmpRank, $value);
+            return $this->sortDescRanking($tmpRank, $valuesMonsters);
         }
 
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && empty($filterSubStatFour)) {
             
             $tmpRank = [];
 
-            foreach($rankingChangeOne as $idRank => $rankingOne){
-                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
-                    foreach($rankingChangeThree as $idThree => $rankingThree){
+            foreach($rankingChangeOne as  $rankingOne){
+                foreach($rankingChangeTwo as $rankingTwo){
+                    foreach($rankingChangeThree as $rankingThree){
                         $rank = ($rankingOne['ranking'] + $rankingTwo['ranking'] + $rankingThree['ranking']);
                         $tmpRank = [
                             "id" => $rankingOne['id'],
@@ -81,16 +88,16 @@ class RankingManager
                 }
             }
 
-            return $this->sortDescRanking($tmpRank, $value);
+            return $this->sortDescRanking($tmpRank, $valuesMonsters);
         }
 
         if(!empty($filterSubStatOne) && !empty($filterSubStatTwo) && !empty($filterSubStatThree) && !empty($filterSubStatFour) ) {
             
             $tmpRank = [];
-            foreach($rankingChangeOne as $idRank => $rankingOne){
-                foreach($rankingChangeTwo as $idTwo => $rankingTwo){
-                    foreach($rankingChangeThree as $idThree => $rankingThree){
-                        foreach($rankingChangeFour as $idFour => $rankingFour){
+            foreach($rankingChangeOne as  $rankingOne){
+                foreach($rankingChangeTwo as $rankingTwo){
+                    foreach($rankingChangeThree as $rankingThree){
+                        foreach($rankingChangeFour as $rankingFour){
                             $rank = ($rankingOne['ranking'] + $rankingTwo['ranking'] + $rankingThree['ranking'] + $rankingFour['ranking']);
                             $tmpRank = [
                                 "id" => $rankingOne['id'],
@@ -101,23 +108,23 @@ class RankingManager
                 }
             }
            
-            return $this->sortDescRanking($tmpRank, $value);
+            return $this->sortDescRanking($tmpRank, $valuesMonsters);
         }
     }
 
     /**
      * real Ranking by filters tri DESC
      */
-    public function sortDescRanking($rankFinal, $value)
+    public function sortDescRanking($rankFinal, $valuesMonsters)
     {
         return $this->getTmpRankingValuesMonsters(
-            $value->getId(), 
-            $value->getAwake(), 
-            $value->getIdElementType()->getName(), 
-            $value->getType(), 
-            $value->getMonster(), 
-            $value->getIdPreferedStats()->getName(),
-            number_format($rankFinal['ranking'], 19, ',', ' ')
+            $valuesMonsters->getId(), 
+            $valuesMonsters->getAwake(), 
+            $valuesMonsters->getIdElementType()->getName(), 
+            $valuesMonsters->getType(), 
+            $valuesMonsters->getMonster(), 
+            $valuesMonsters->getIdPreferedStats()->getName(),
+            number_format($rankFinal['ranking'], 19, '.', ' ')
         );
     }
 
@@ -160,7 +167,5 @@ class RankingManager
         if($a['ranking'] != $b['ranking']) {
             return $a['ranking'] < $b['ranking'];
         }
-
-        return $a['family'] > $b['family'];
     }
 }

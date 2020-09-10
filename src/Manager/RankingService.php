@@ -22,10 +22,10 @@ class RankingService{
      * @param array $monsterFilterByTwoParameters
      * @param int $selectFormsubStatsType1
      */
-    public function rankingSubStats($monsterFilterByTwoParameters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
+    public function getRankingSubStats($monstersFilters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {
         $ranking = [];
-        foreach($monsterFilterByTwoParameters as $valuesMonsters) {
+        foreach($monstersFilters as $valuesMonsters) {
             if(!empty($filterSubStatOne) || !empty($filterSubStatTwo)) {
                 $ranking = $this->rankingManager->verifRankingMonstersBySubStat($valuesMonsters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
             }

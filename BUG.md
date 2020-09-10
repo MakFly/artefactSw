@@ -8,4 +8,4 @@ rajouter le off select option quand on le met à vide
 [FILTRES]
 bug sur le fais qu'il n'y ait pas de traitement quand on sélectionne la deuxieme & troisième options
 
-pouvoir afficher les monstres en selectionnant que les types de monstres
+Trier si type monsters + subs stats choisie

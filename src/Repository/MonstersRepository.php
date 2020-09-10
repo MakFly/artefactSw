@@ -19,22 +19,12 @@ class MonstersRepository extends ServiceEntityRepository
         parent::__construct($registry, Monsters::class);
     }
 
-    /**
-     *
-     * @param int $idElements
-     * @param int $idSubsStats
-     * 
-     * Request for 1 results with 2 select value option send to request DQL
-     */
-    public function searchMonstersBySubsStats($idElements, $idSubstatsArtefactByMonsters)
+    public function searchMonstersByTypeOfMonsters($idFlatsStats)
     {
         return $this->createQueryBuilder('m')
-            ->leftJoin('m.idElementType', 'e_t')
-            ->leftJoin('m.idSubstatsArtefactByMonsters', 's')
-            ->where("m.idElementType = :idElementType")
-            ->andWhere("m.idSubstatsArtefactByMonsters = :idSubstatsArtefactByMonsters")
-            ->setParameter('idElementType', $idElements)
-            ->setParameter('idSubstatsArtefactByMonsters', $idSubstatsArtefactByMonsters)
+            ->leftJoin('m.idFlatStats', 'f_s')
+            ->where("m.idFlatStats = :idFlatStats")
+            ->setParameter('idFlatStats', $idFlatsStats)
             ->getQuery()
             ->execute();
     }
@@ -55,7 +45,6 @@ class MonstersRepository extends ServiceEntityRepository
             ->andWhere("m.idFlatStats = :idFlatStats")
             ->setParameter('idElementType', $idElements)
             ->setParameter('idFlatStats', $idFlatStats)
-            // ->setMaxResults(15)
             ->getQuery()
             ->execute();
     }
