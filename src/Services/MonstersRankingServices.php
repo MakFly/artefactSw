@@ -78,7 +78,6 @@ class MonstersRankingServices {
         } 
         
         if(!empty($selectElement_type_form_name) && !empty($selectFlatType) && empty($filterSubStatOne) && empty($filterSubStatTwo) && empty($filterSubStatThree) && empty($filterSubStatFour)) {
-            dump('1');
             $filtersFlatTypeMonters = $monstersRepository->searchMonstersByFilters($selectElement_type_form_name, $selectFlatType);
         }
         
