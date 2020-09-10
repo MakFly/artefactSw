@@ -80,6 +80,14 @@ class MonstersRankingServices {
         if(!empty($selectElement_type_form_name) && !empty($selectFlatType) && empty($filterSubStatOne) && empty($filterSubStatTwo) && empty($filterSubStatThree) && empty($filterSubStatFour)) {
             $filtersFlatTypeMonters = $monstersRepository->searchMonstersByFilters($selectElement_type_form_name, $selectFlatType);
         }
+
+        if(!empty($selectElement_type_form_name) && empty($selectFlatType) && empty($filterSubStatOne) && empty($filterSubStatTwo) && empty($filterSubStatThree) && empty($filterSubStatFour)) {
+            $filtersFlatTypeMonters = $monstersRepository->searchMonstersByElementsOfMonsters($selectElement_type_form_name);
+        }
+
+        if(empty($selectElement_type_form_name) && empty($selectFlatType) && empty($filterSubStatOne) && empty($filterSubStatTwo) && empty($filterSubStatThree) && empty($filterSubStatFour)) {
+            $filtersFlatTypeMonters = $monstersRepository->findAll();
+        }
         
         /** calcul du ranking */
         if(!empty($rankings)) {

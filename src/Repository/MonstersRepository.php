@@ -29,6 +29,16 @@ class MonstersRepository extends ServiceEntityRepository
             ->execute();
     }
 
+    public function searchMonstersByElementsOfMonsters($idElements)
+    {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.idElementType', 'e_t')
+            ->where("m.idElementType = :idElementType")
+            ->setParameter('idElementType', $idElements)
+            ->getQuery()
+            ->execute();
+    }
+
     /**
      * Undocumented function
      *

@@ -522,10 +522,17 @@ class RankingAllSkillsManager
             break;
             case 15:
                 if ($skills->getAtkincreasingeffectmorepourcent() == 2) {
-                    $rankingChangeSubStat[] = [
-                        "id" => $value->getId(),
-                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
-                    ];
+                    if (in_array($value->getId(), $monsterEpic)) {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 100 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    } else {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    }
                 }
                 if ($skills->getAtkincreasingeffectmorepourcent() == 1) {
                     $rankingChangeSubStat[] = [
@@ -622,10 +629,17 @@ class RankingAllSkillsManager
             break;
             case 29:
                 if ($skills->getDamagedealtonwindmorepourcent() == 2) {
-                    $rankingChangeSubStat[] = [
-                        "id" => $value->getId(),
-                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
-                    ];
+                    if (in_array($value->getId(), $monsterEpic)) {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 100 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    } else {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    }
                 }
                 if ($skills->getDamagedealtonwindmorepourcent() == 1) {
                     $rankingChangeSubStat[] = [
@@ -882,10 +896,17 @@ class RankingAllSkillsManager
             break;
             case 11:
                 if ($skills->getAdditionaldamagebypourcentofatk() == 2) {
-                    $rankingChangeSubStat[] = [
-                        "id" => $value->getId(),
-                        "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
-                    ];
+                    if (in_array($value->getId(), $monsterEpic)) {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 100 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    } else {
+                        $rankingChangeSubStat[] = [
+                            "id" => $value->getId(),
+                            "ranking" => 2 + floatval(str_replace(",", ".", $value->getRanking()))
+                        ];
+                    }
                 }
                 if ($skills->getAdditionaldamagebypourcentofatk() == 1) {
                     $rankingChangeSubStat[] = [
