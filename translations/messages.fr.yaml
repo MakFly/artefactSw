@@ -1,9 +1,9 @@
 #fr
 navTitle: Summoners War Artefact
-artefact: Artefact par monstres
-artefactByMonsters: Monstres par artefact
-element: Éléments
-TypeMonsters: Type de Monstres
+artefact: Monstres par artefact
+artefactByMonsters: Artefact par monstres
+element: Éléments du monstre
+TypeArtefact: Stat. Principal de l'artefact
 name: Nom
 stars: Étoiles
 family: Famille

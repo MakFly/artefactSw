@@ -4,20 +4,18 @@ namespace App\Controller;
 
 use App\Entity\ElementType;
 use App\Entity\FlatStats;
+use App\Entity\PreferedStats;
 use App\Entity\SubstatArtefact;
 use App\Form\ElementTypeForm;
 use App\Form\FlatStatsType;
+use App\Form\PreferedStatsType;
 use App\Form\SubStatArtefactType;
-use App\Manager\RankingAllSkillsManager;
-use App\Manager\RankingManager;
 use App\Repository\MonstersRepository;
-use App\Manager\RankingService;
 use App\Services\MonstersRankingServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ArtefactMonstersController extends AbstractController
 {
@@ -27,14 +25,16 @@ class ArtefactMonstersController extends AbstractController
      *  "en": "/artefactByMonster"
      * }, name="artefactByMonster")
      */
-    public function indexArtefactByMonsters(Request $request, TranslatorInterface $translator)
+    public function indexArtefactByMonsters(Request $request)
     {
         $elementType = new ElementType();
         $flatStatsType = new FlatStats();
+        $preferedStats = new PreferedStats();
         $subStatsType = new SubstatArtefact();
 
         $formElementType = $this->createForm(ElementTypeForm::class, $elementType);
         $formFlatStatType = $this->createForm(FlatStatsType::class, $flatStatsType);
+        $formPreferedStat = $this->createForm(PreferedStatsType::class, $preferedStats);
         $formsubStatsType1 = $this->createForm(SubStatArtefactType::class, $subStatsType);
         $formsubStatsType2 = $this->createForm(SubStatArtefactType::class, $subStatsType);
         $formsubStatsType3 = $this->createForm(SubStatArtefactType::class, $subStatsType);
@@ -52,6 +52,7 @@ class ArtefactMonstersController extends AbstractController
                 'locale' => $locale,
                 'formElementType' => $formElementType->createView(),
                 'formFlatStat' => $formFlatStatType->createView(),
+                'formPreferedStat' => $formPreferedStat->createView(),
                 'formsubStatsType' => $formsubStatsType1->createView(),
                 'formsubStatsType2' => $formsubStatsType2->createView(),
                 'formsubStatsType3' => $formsubStatsType3->createView(),

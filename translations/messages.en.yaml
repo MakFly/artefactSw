@@ -1,9 +1,9 @@
 #en
 navTitle: Summoners War Artefact 
-artefact: Artefact by monsters
-artefactByMonsters: Monsters by Artefact
-element: Elements
-TypeMonsters: Type de Monstres
+artefact: Monsters by Artefact
+artefactByMonsters: Artefact by monsters
+element: Elements of monsters
+TypeArtefact: Stat. Principal of Artefact
 name: Name
 stars: Stars
 family: Family

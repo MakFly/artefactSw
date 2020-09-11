@@ -23,6 +23,7 @@ $(document).ready(function(){
 
 	var selectElement_type_form_name = "";
 	var selectFlatType = "";
+	var selectprefered_stats_name = "";
 	var selectFormsubStatsType1 = "";
 	var selectFormsubStatsType2 = "";
 	var selectFormsubStatsType3 = "";
@@ -34,7 +35,7 @@ $(document).ready(function(){
 	$('.formsubStatsType3').attr('disabled', 'disabled');
 	$('.formsubStatsType4').attr('disabled', 'disabled');
 
-	$('#flat_stats_name').on('change', function() {		
+	$('#prefered_stats_name').on('change', function() {		
 		$('.formsubStatsType1').removeAttr('disabled');
 	})
 
@@ -50,9 +51,10 @@ $(document).ready(function(){
 		$('.formsubStatsType4').removeAttr('disabled');
 	})
 
-	$('#element_type_form_name, #flat_stats_name, .formsubStatsType1, .formsubStatsType2, .formsubStatsType3, .formsubStatsType4').on('change', function(){
+	$('#element_type_form_name, #flat_stats_name, #prefered_stats_name, .formsubStatsType1, .formsubStatsType2, .formsubStatsType3, .formsubStatsType4').on('change', function(){
 		selectElement_type_form_name    = $('#element_type_form_name').val();
 		selectFlatType                  = $('#flat_stats_name').val();
+		selectprefered_stats_name       = $('#prefered_stats_name').val();
 		selectFormsubStatsType1         = $('.formsubStatsType1 ').val();
 		selectFormsubStatsType2         = $('.formsubStatsType2 ').val();
 		selectFormsubStatsType3         = $('.formsubStatsType3 ').val();
@@ -66,6 +68,7 @@ $(document).ready(function(){
 				data: {
 					"selectElement_type_form_name": selectElement_type_form_name,
 					"selectFlatType": selectFlatType,
+					"selectprefered_stats_name": selectprefered_stats_name,
 					"selectFormsubStatsType1": selectFormsubStatsType1,
 					"selectFormsubStatsType2": selectFormsubStatsType2,
 					"selectFormsubStatsType3": selectFormsubStatsType3,
@@ -119,10 +122,15 @@ $(document).ready(function(){
                 <label for="labelElement">{{ 'element'|trans}}</label>
                 {{ form_widget(formElementType.name) }}
             </div>
+			{# Type de monstre #}
+            <div class="form-group">
+                <label for="labelTypeMonsters">{{ 'TypeMonsters'|trans}}</label>
+                {{ form_widget(formFlatStat.name) }}
+            </div>
             {# Flat stat #}
             <div class="form-group">
-                <label for="labelFlatStats">{{ 'TypeMonsters'|trans}}</label>
-                {{ form_widget(formFlatStat.name) }}
+                <label for="labelPreferedStats">{{ 'TypeArtefact'|trans}}</label>
+                {{ form_widget(formPreferedStat.name) }}
             </div>
             {# substat 1 #}
             <div class="form-group">

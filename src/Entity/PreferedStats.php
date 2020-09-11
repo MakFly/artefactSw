@@ -39,4 +39,14 @@ class PreferedStats
     {
         return $this->name;
     }
+
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 }
