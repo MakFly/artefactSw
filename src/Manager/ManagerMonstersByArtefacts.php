@@ -94,7 +94,6 @@ class ManagerMonstersByArtefacts
 
     /**
      * Send a array with data for placing into the ajax twig
-     *  37 à rajouter en plus de ce déjà mis dans le tableau
      * @var $subStats
      */
     public function checkArtefactsByMonsters($subStats, $translatorInterface)

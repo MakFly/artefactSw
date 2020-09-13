@@ -53,7 +53,6 @@ class MonstersRankingServices {
             && empty($filterSubStatFour)
         ) {
             $filtersMonters = $monstersRepository->searchMonstersByThirdFilters($selectElement_type_form_name, $selectFlatType, $selectprefered_stats_name);
-            dump('tu passes ici si les 3 premiers filtres ont été sélectionné ');
         }
 
         if (!empty($filtersMonters)) {

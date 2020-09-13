@@ -79,7 +79,6 @@ class MonstersRepository extends ServiceEntityRepository
     public function searchMonstersBySubStatsFilters($idElements, $idFlatStats, $idPreferedStats)
     {
         if(empty($idElements) && empty($idFlatStats) && !empty($idPreferedStats)) {
-            dump('tu passes ici dans la query 1BIS ');
             return $this->createQueryBuilder('m')
                 ->leftJoin('m.idPreferedStats', 'ps')
                 ->addSelect("CASE WHEN m.idPreferedStats = :idPreferedStats THEN 1 ELSE 0 END")
@@ -90,8 +89,7 @@ class MonstersRepository extends ServiceEntityRepository
                 ->execute();
         }
 
-        if(empty($idElements)) {
-            dump('tu passes ici dans la query 0 ');
+        if(empty($idElements) && !empty($idFlatStats) && !empty($idPreferedStats)) {
             return $this->createQueryBuilder('m')
                 ->leftJoin('m.idFlatStats', 'fs')
                 ->leftJoin('m.idPreferedStats', 'ps')
@@ -105,7 +103,6 @@ class MonstersRepository extends ServiceEntityRepository
         }
 
         if(empty($idFlatStats)) {
-            dump('tu passes ici dans la query 1 ');
             return $this->createQueryBuilder('m')
                 ->leftJoin('m.idElementType', 'e_t')
                 ->leftJoin('m.idPreferedStats', 'ps')
@@ -120,7 +117,6 @@ class MonstersRepository extends ServiceEntityRepository
         }
 
         if(empty($idElements) && empty($idFlatStats) && !empty($idPreferedStats)) {
-            dump('tu passes ici dans la query 1BIS ');
             return $this->createQueryBuilder('m')
                 ->leftJoin('m.idPreferedStats', 'ps')
                 ->addSelect("CASE WHEN m.idPreferedStats = :idPreferedStats THEN 1 ELSE 0 END")
@@ -132,7 +128,6 @@ class MonstersRepository extends ServiceEntityRepository
         }
         
         if(!empty($idElements) && !empty($idFlatStats) && !empty($idPreferedStats) ) {
-            dump('tu passes ici dans la query 2 ');
             return $this->createQueryBuilder('m')
                 ->leftJoin('m.idElementType', 'e_t')
                 ->leftJoin('m.idPreferedStats', 'ps')

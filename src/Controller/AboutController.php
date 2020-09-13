@@ -16,8 +16,6 @@ class AboutController extends AbstractController
      */
     public function about(Request $request)
     {
-        dump($request);
-
         return $this->render('default/about.html.twig', [
             'controller_name' => 'AboutController',
         ]);

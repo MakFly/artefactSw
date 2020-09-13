@@ -17,7 +17,7 @@ class RankingService{
     }
 
     /**
-     * Boucle sur l'ensemble des monstrers trouvé dans le filtre
+     * Boucle sur l'ensemble des monstres trouvé dans le filtre
      * 
      */
     public function getRankingSubStats($monstersFilters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
