@@ -5,14 +5,14 @@
 
 {% block stylesheets %}
 <style>
-table{
+{# table{
   margin: 0 auto;
   width: 100%;
   clear: both;
   border-collapse: collapse;
   table-layout: fixed; // ***********add this
   word-wrap:break-word; // ***********and this
-}
+} #}
 
 </style>
 {% endblock %}
@@ -21,7 +21,7 @@ table{
 
 {% include 'artefact_monsters/nav.html.twig' %}
 
-<div class="row" style="margin-left: 5%;">
+<div class="row">
   <div class="col-2">
     {% include 'artefact_monsters/menuSelect.html.twig' %}
   </div>

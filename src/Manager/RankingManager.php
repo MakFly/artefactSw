@@ -137,7 +137,6 @@ class RankingManager
      * @param string $family
      * @param string $preferedStatName
      * @param [type] $rank
-     * @return void
      */
     public function getTmpRankingValuesMonsters($id, $awake, $elementName, $type, $family, $preferedStatName, $rank)
     {
@@ -164,7 +163,7 @@ class RankingManager
      */
     public function fonctionComparaisonRanking($a, $b) 
     {
-        if($a['ranking'] != $b['ranking']) {
+        if($a['ranking'] != $b['ranking'] ) {
             return $a['ranking'] < $b['ranking'];
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Manager;
+namespace App\Services;
 
 use App\Manager\RankingManager;
 
@@ -19,16 +19,12 @@ class RankingService{
     /**
      * Boucle sur l'ensemble des monstrers trouvé dans le filtre
      * 
-     * @param array $monsterFilterByTwoParameters
-     * @param int $selectFormsubStatsType1
      */
     public function getRankingSubStats($monstersFilters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour)
     {
         $ranking = [];
         foreach($monstersFilters as $valuesMonsters) {
-            if(!empty($filterSubStatOne) || !empty($filterSubStatTwo)) {
-                $ranking = $this->rankingManager->verifRankingMonstersBySubStat($valuesMonsters, $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
-            }
+            $ranking = $this->rankingManager->verifRankingMonstersBySubStat($valuesMonsters[0], $filterSubStatOne, $filterSubStatTwo, $filterSubStatThree, $filterSubStatFour);
         }
 
         return $ranking;

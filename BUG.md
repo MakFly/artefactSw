@@ -38,6 +38,10 @@ public function searchMonstersByElementsFlatStatsPreferedStats($idElements, $idF
     }
 
 
+ATTENTION : revoir les requête DQL voir les conditions aussi
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 [FILTRES]
 
 [FRONT]
